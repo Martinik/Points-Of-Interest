@@ -1,0 +1,21 @@
+
+    .pb-cmnt-container {
+        font-family: Lato;
+        /* margin-top: 100px; */
+    }
+
+    .pb-cmnt-textarea {
+        resize: none;
+        padding: 20px;
+        height: 120px;
+        width: 100%;
+        border: 1px solid #F2F2F2;
+    }
+
+    .submit-comment-container :hover {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
+    }
+
+    .panel-body :hover {
+        box-shadow: none;
+    }

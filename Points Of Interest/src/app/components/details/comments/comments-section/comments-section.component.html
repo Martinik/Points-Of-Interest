@@ -1,0 +1,24 @@
+<div class="row">
+  <div class="comments-wrapper">
+
+    <submit-comment-form [pointId]="pointId" (submittedComment)="handleCommentSubmit($event)"></submit-comment-form>
+
+    <div *ngIf="comments">
+
+      <div *ngFor="let comment of comments">
+        <comment-card (commentDeleted)="handleCommentDeletion($event)" [comment]="comment"></comment-card>
+      </div>
+
+    </div>
+
+    <div *ngIf="!comments">
+
+      <img src="https://pro2-bar-s3-cdn-cf.myportfolio.com/77e52192b707e14738a3ed47166f80c2/b89e70c9-9809-4b01-a4c0-a37cd5e9877d_rw_1200.gif?h=79bc553162a15971e602a4bacf178da3"
+        alt="loading-comments">
+
+    </div>
+
+
+
+  </div>
+</div>

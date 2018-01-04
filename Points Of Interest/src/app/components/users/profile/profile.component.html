@@ -1,0 +1,107 @@
+<!--
+User Profile Sidebar by @keenthemes
+A component of Metronic Theme - #1 Selling Bootstrap 3 Admin Theme in Themeforest: http://j.mp/metronictheme
+Licensed under MIT
+-->
+
+<div class="container">
+  <div class="row profile">
+    <div class="col-md-3 sidebar-wrapper">
+
+
+      <div *ngIf="user" class="profile-sidebar">
+        <!-- SIDEBAR USERPIC -->
+        <div class="profile-userpic">
+          <!-- <img src="https://www.randomlists.com/img/people/arnold_schwarzenegger.jpg" class="img-responsive" alt=""> -->
+          <img src="{{user.avatarUrl}}" class="img-responsive" alt="avatar" 
+          onerror="this.onerror=null;this.src='./../../../assets/images/default-avatar.png';">
+          
+        </div>
+        <!-- END SIDEBAR USERPIC -->
+        <!-- SIDEBAR USER TITLE -->
+        <div class="profile-usertitle">
+          <div class="profile-usertitle-name">
+            {{user.name}}
+          </div>
+          <div class="profile-usertitle-job">
+            {{user.username}}
+          </div>
+          <div class="profile-usertitle-name">
+            {{user.email}}
+          </div>
+        </div>
+        <!-- END SIDEBAR USER TITLE -->
+
+        <!-- SIDEBAR MENU -->
+
+         <!-- USER IS OWNER OF PROFILE -->
+        <div *ngIf="userIsOwnerOfProfile"  class="profile-usermenu">
+          <ul class="nav">
+            <!-- <li class="active"> -->
+            <li>
+              <a routerLink="/user/profile/{{user.username}}" routerLinkActive="active">
+                <i class="glyphicon glyphicon-home"></i>
+                Overview </a>
+            </li>
+            <li>
+              <a routerLink="/user/edit/{{user.username}}" routerLinkActive="active">
+                <i class="glyphicon glyphicon-user"></i>
+                Account Settings </a>
+            </li>
+            <!-- <li>
+              <a href="#" target="_blank">
+                <i class="glyphicon glyphicon-ok"></i>
+                Tasks </a>
+            </li> -->
+            <li>
+              <a routerLink="/logout">
+                <i class="glyphicon glyphicon-flag"></i>
+                Logout </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- USER IS NOT OWNER OF PROFILE -->
+        <div *ngIf="!userIsOwnerOfProfile"  class="profile-usermenu">
+          <ul class="nav">
+            <!-- <li class="active"> -->
+            <!-- <li>
+              <a routerLink="/user/profile/{{user.username}}" routerLinkActive="active">
+                <i class="glyphicon glyphicon-home"></i>
+                Overview </a>
+            </li> -->
+          </ul>
+        </div>
+
+        <!-- END MENU -->
+      </div>
+
+      <div *ngIf="!user" class="profile-sidebar">
+        <img class="loading-user-gif" src="./../../../assets/images/circle-load.gif" alt="loading...">
+      </div>
+
+      <div *ngIf="!username">
+        <div>
+          <img src="https://loading.io/spinners/microsoft/lg.rotating-balls-spinner.gif" alt="User Info">
+        </div>
+      </div>
+
+    </div>
+    <div class="col-md-9">
+      <div class="profile-content">
+        <div *ngIf="shouldDisplayDetails">
+          User's Points Go here
+          <br> Action : {{action}}
+        </div>
+        <div *ngIf="shouldDisplayEditForm">
+          <div *ngIf="user">
+            <edit-user [user]="user"></edit-user>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<br>
+<br>

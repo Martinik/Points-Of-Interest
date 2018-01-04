@@ -1,0 +1,16 @@
+
+<div class="container pb-cmnt-container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="panel panel-info submit-comment-container">
+                <div class="panel-body">
+                    <form class="form-inline" [formGroup]="commentForm" (ngSubmit)="submitComment(commentForm.value)">
+                        <textarea formControlName="comment" class="pb-cmnt-textarea" id="comment" name="comment" type="text" placeholder="Submit a comment...">
+                          </textarea>
+                          <input type="submit" class="btn btn-primary pull-right" value="Submit" [disabled]="!commentForm.valid">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

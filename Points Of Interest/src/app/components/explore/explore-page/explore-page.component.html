@@ -1,0 +1,26 @@
+<div class="container">
+
+  <div class="row">
+    <div class="gallery col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <h1 class="gallery-title">Points of Interest</h1>
+    </div>
+
+    <div class="link-buttons" align="center">
+      <a routerLink="/explore/practical" class="btn btn-default filter-button" data-filter="all">Practical</a>
+      <a routerLink="/explore/all" class="btn btn-default filter-button" data-filter="all">All</a>
+      <a routerLink="/explore/recreational" class="btn btn-default filter-button" data-filter="all">Recreational</a>
+    </div>
+    <br/>
+
+    <div *ngIf="points" align="center" class="cards-wrapper">
+      <div *ngFor="let point of points" class="card">
+        <point-card [point]="point"></point-card>
+      </div>
+    </div>
+  
+    <div *ngIf="!points">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/7/7d/Pedro_luis_romani_ruiz.gif" alt="loading">
+    </div>
+    
+  </div>
+</div>

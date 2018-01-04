@@ -1,0 +1,113 @@
+<div class="card">
+  <div class="container-fliud">
+    <div class="wrapper row">
+
+
+      <div class="preview col-md-6">
+
+
+        <div class="tab-content ">
+          <h3>
+            <div class="tab-pane active card-title">
+              <h2>{{point.title | uppercase}}</h2>
+            </div>
+          </h3>
+        </div>
+
+        <div class="preview-pic tab-content">
+          <div class="tab-pane active" id="pic-1">
+            <img src="{{point.imgUrl}}" alt="Image not found" onerror="this.onerror=null;this.src='http://lakefarmbeef.co.nz/wp-content/themes/lakefarm/img/noimage.png';"
+            />
+          </div>
+        </div>
+
+      </div>
+
+
+      <div class="details col-md-6">
+
+        <div class="panel panel-default text-center">
+          <h3>
+            <div class="panel-title">
+              <span class="glyphicon glyphicon-globe"></span> Where?</div>
+          </h3>
+          <hr>
+          <h4>{{point.location}}</h4>
+        </div>
+
+        <div *ngIf="shouldDisplayDate">
+          <div class="panel panel-default text-center">
+            <div class="rating">
+              <h3>
+                <div class="panel-title">
+                  <span class="glyphicon glyphicon-calendar"></span> When?</div>
+              </h3>
+              <hr>
+              <div *ngIf="shouldDisplayTime">
+                <h4>{{point.date | date: 'fullDate'}} at {{point.time | date: 'shortTime'}}</h4>
+              </div>
+              <div *ngIf="!shouldDisplayTime">
+                <h4>{{point.date | date: 'fullDate'}}</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel panel-default text-center">
+          <h3>
+            <div class="panel-title">
+              <span class="glyphicon glyphicon-list-alt"></span> Details</div>
+          </h3>
+          <hr>
+          <h4>{{point.description}}</h4>
+        </div>
+
+        <div class="panel panel-default text-center">
+          <h3>
+            <div class="panel-title">
+              <span class="glyphicon glyphicon-fire"></span> Interest</div>
+          </h3>
+          <hr>
+          <h2>
+            <font color="purple">{{interestCount}}
+              <span class="glyphicon glyphicon-flash"></span>
+            </font>
+
+          </h2>
+
+        </div>
+
+
+        <div class="text-center">
+
+
+          <div *ngIf="!userIsInterested">
+            <button class="add-to-cart btn btn-default show-interest" type="button" (click)="addUserToInterested()">
+
+              <div *ngIf="!interestIsLoading">
+                <span class="glyphicon glyphicon-fire"></span> Show Interest</div>
+              <div *ngIf="interestIsLoading">
+                <img class="loading-interest" src="./../../../../assets/images/circle-load.gif" alt="@"> Show Interest</div>
+
+            </button>
+          </div>
+
+
+          <div *ngIf="userIsInterested">
+            <button class="add-to-cart btn btn-default remove-interest" type="button" (click)="removeUserFromInterested()">
+
+              <div *ngIf="!interestIsLoading">
+                <span class="glyphicon glyphicon-tint"></span> Remove Interest
+              </div>
+              <div *ngIf="interestIsLoading">
+                <img class="loading-interest" src="./../../../../assets/images/circle-load.gif" alt="@"> Remove Interest
+              </div>
+
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

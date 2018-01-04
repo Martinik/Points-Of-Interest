@@ -1,0 +1,20 @@
+<div class="container">
+
+  <div *ngIf="point">
+    <details-card [point]="point"></details-card>
+  </div>
+
+  <div *ngIf="!point" class="loading-div">
+    <img class="loading-img" src="https://loading.io/spinners/microsoft/lg.rotating-balls-spinner.gif" alt="loading">
+  </div>
+
+  <br>
+  <br>
+<hr>
+  <!-- comments section -->
+  <div *ngIf="point">
+    <comments-section [pointId]="point._id"></comments-section>
+  </div>
+
+  <!-- comments section end -->
+</div>

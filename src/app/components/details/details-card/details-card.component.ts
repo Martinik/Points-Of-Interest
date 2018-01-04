@@ -35,14 +35,7 @@ export class DetailsCardComponent implements OnInit {
 
   addUserToInterested() {
     let currentUserId = this.auth.userId;
-    // if (this.point['interestedUsers'] && this.point['interestedUsers'].includes(currentUserId)) {
-    //   return;  // user is already interested
-    // }
-
-    // this.pointsService.addInterestedUser(currentUserId, this.point)
-    //   .subscribe(modifiedPoint => this.onAddRemoveSuccess(modifiedPoint));
-
-    
+   
     this.checkIfUserInterested();
 
     if (this.userIsInterested) {
@@ -55,21 +48,12 @@ export class DetailsCardComponent implements OnInit {
       .subscribe(data => this.onAddInterestSuccess(data));
 
 
-
-
   }
 
   removeUserFromInterested() {
-    // console.log(`1`);
+    
     let currentUserId = this.auth.userId;
-    // if (!(this.point['interestedUsers'].includes(currentUserId))) {
-    //   console.log(`user already not interested!`);
-    //   return;  // user is already NOT interested
-    // }
-    // console.log(`2`);
-    // this.pointsService.removeInterestedUser(currentUserId, this.point)
-    //   .subscribe(modifiedPoint => this.onAddRemoveSuccess(modifiedPoint));
-
+ 
     this.checkIfUserInterested();
 
     if (!this.userIsInterested) {
@@ -100,28 +84,14 @@ export class DetailsCardComponent implements OnInit {
   }
 
   onAddRemoveSuccess(data) {
-    // console.log(`3`);
-    // console.log(modifiedPoint);
-
-    // this.point = modifiedPoint;
-    // console.log(this.point);
-    // this.checkIfUserInterested();
-    // this.findInterestCount();
+ 
     this.interestIsLoading = false;
     this.getInterests();
 
   }
 
   findInterestCount() {
-    // console.log(`8`);
-    // if (this.point['interestedUsers']) {
-    //   this.interestCount = this.point['interestedUsers'].length;
-    // } else {
-    //   console.log(`point has no array (inside findInterestCount)`);
-    //   this.interestCount = 0;
-    // }
-    // console.log(`9`);
-
+  
     this.interestCount = this.interests.length;
   }
 
@@ -141,29 +111,7 @@ export class DetailsCardComponent implements OnInit {
   }
 
   checkIfUserInterested() {
-    // console.log(`4`);
-    // if (!this.point['interestedUsers']) {
-    //   console.log(`user has no array of interested users!`);
-    //   this.userIsInterested = false;
-    //   return;
-    // }
-
-
-    // let currentUserId = this.auth.userId;
-    // console.log(`5`);
-    // if (currentUserId) {
-    //   console.log(`6`);
-    //   if (this.point['interestedUsers'].includes(currentUserId)) {
-    //     console.log(`userIsInterested set to true`);
-    //     this.userIsInterested = true;
-    //   } else {
-    //     console.log(`userIsInterested set to false`);
-    //     this.userIsInterested = false;
-    //   }
-    //   console.log(`7`);
-    // }
-
-
+  
     let currentUserId = this.auth.userId;
     let interestsContainingCurrentUser = this.interests.filter(i => i['userId'] === currentUserId);
 

@@ -1,10 +1,10 @@
 <!-- <nav>
-  <div *ngIf="!authService.isLoggedIn()">
+  <div *ngIf="!isLoggedIn">
     <a routerLink="/login">Login |</a>
     <a routerLink="/register">Register |</a>
     <a routerLink="/new">Create</a>
   </div>
-  <div *ngIf="authService.isLoggedIn()">
+  <div *ngIf="isLoggedIn">
     <a routerLink="/home">Home |</a>
     <a routerLink="/new">Create |</a>
     <a routerLink="/explore/all">Explore |</a>
@@ -35,7 +35,7 @@
 
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <div *ngIf="authService.isLoggedIn()">
+      <div *ngIf="isLoggedIn">
         <ul class="nav navbar-nav">
 
           <!-- dropdown -->
@@ -79,7 +79,7 @@
 
       <!-- searchbar -->
 
-      <div *ngIf="authService.isLoggedIn()">
+      <div *ngIf="isLoggedIn">
         <form class="navbar-form navbar-left form-horizontal" role="search">
           <div class="input-group">
             <input type="text" class="search-box" placeholder="Search">
@@ -91,7 +91,7 @@
       </div>
 
 
-      <!-- <div *ngIf="authService.isLoggedIn()">
+      <!-- <div *ngIf="isLoggedIn">
         <search-bar></search-bar>
       </div> -->
 
@@ -99,7 +99,7 @@
       <!-- searchbar end -->
 
 
-      <div *ngIf="authService.isLoggedIn()">
+      <div *ngIf="isLoggedIn">
         <ul class="nav navbar-nav navbar-right">
 
           <!-- user profile -->
@@ -202,7 +202,7 @@
       </div>
 
 
-      <div *ngIf="!authService.isLoggedIn()">
+      <div *ngIf="!isLoggedIn">
         <ul class="nav navbar-nav navbar-right">
           <!-- login -->
           <li>

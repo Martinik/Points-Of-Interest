@@ -1,0 +1,34 @@
+<div align="center">
+  <button id="btnCreated" (click)="changeToCreatedPoints($event)" class="btn btn-default point-select-btn selected-btn">Your Points</button>
+  <button id="btnInterests" (click)="changeToInterests($event)" class="btn btn-default point-select-btn">Your Interests</button>
+</div>
+<hr>
+<br>
+
+
+
+<div align="center">
+  <div *ngIf="displayArray" align="center" class="cards-wrapper">
+
+
+    <div align="center" class="row">
+
+      <div align="center" *ngFor="let point of displayArray" class="card">
+
+        <user-point-card [point]="point"></user-point-card>
+
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<div *ngIf="!displayArray || displayArray.length < 1" align="center" class="cards-wrapper">
+
+  <br>
+  <br>
+  <br>
+  <span>Nothing here...</span>
+
+</div>

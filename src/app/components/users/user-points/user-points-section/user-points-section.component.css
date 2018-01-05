@@ -1,0 +1,17 @@
+.card-wrap{
+    
+}
+
+.row{
+    text-align: center;
+}
+
+.card{
+    /* padding: 2px; */
+}
+
+.selected-btn{
+    background: rgb(1, 1, 56);
+    color: white;
+    
+}

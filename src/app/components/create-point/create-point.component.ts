@@ -138,7 +138,7 @@ export class CreatePointComponent implements OnInit {
     // this.createForm.patchValue({date: '1-1-1'})
 
     btnPrac.classList.add("selected-btn");
-    btnRec.classList.remove("selected-btn");
+    btnRec.classList.remove("selected-btn"); 
 
     let timeElement = document.querySelector("#time input")
     timeElement['value'] = '-'

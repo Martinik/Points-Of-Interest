@@ -30,6 +30,8 @@ import { CommentsService } from './services/comments.service';
 import { InterestsService } from './services/interests.service';
 import { UsersService } from './services/users.service';
 import { EditComponent } from './components/users/edit/edit.component';
+import { UserPointsSectionComponent } from './components/users/user-points/user-points-section/user-points-section.component';
+import { UserPointCardComponent } from './components/users/user-points/user-point-card/user-point-card.component';
 
 
 
@@ -48,7 +50,9 @@ import { EditComponent } from './components/users/edit/edit.component';
     HeaderComponent,
     SearchBarComponent,
     ProfileComponent,
-    EditComponent
+    EditComponent,
+    UserPointsSectionComponent,
+    UserPointCardComponent
   ],
   imports: [
     BrowserModule,

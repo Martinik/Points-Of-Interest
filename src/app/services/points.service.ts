@@ -7,6 +7,7 @@ import { AuthenticationService } from '../authentication/auth.service';
 const appKey = "kid_ByDhot8GG" // APP KEY HERE;
 const appSecret = "e70ea79558764cc586f9a70609801142" // APP SECRET HERE;
 const pointsBaseUrl = `https://baas.kinvey.com/appdata/${appKey}/Points`
+const usersBaseUrl = `https://baas.kinvey.com/user/${appKey}` 
 
 
 @Injectable()
@@ -14,7 +15,13 @@ export class PointsService {
 
   constructor(private http: HttpClient, private auth: AuthenticationService) { }
 
+  getCreatorById(userId: string) : Observable<Object>{
+    let url = `${usersBaseUrl}/${userId}`;
 
+    return this.http.get<Object>(url, {headers: this.auth.createAuthHeaders('Kinvey')})
+    .catch((e: any) => Observable.throw(this.handleError(e)))
+    
+  }
 
   create(pointModel: any): Observable<Object> {
     return this.http.post(

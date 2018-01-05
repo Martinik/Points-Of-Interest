@@ -17,7 +17,8 @@ export class DetailsCardComponent implements OnInit {
   userIsInterested: boolean = false;
   interests: Object[];
   interestCount: number;
-  interestIsLoading: boolean = true;
+  interestIsLoading: boolean = true; 
+  userIsCreator: boolean = false;
 
   constructor(private auth: AuthenticationService, private pointsService: PointsService, private interestsService: InterestsService) { }
 
@@ -30,7 +31,17 @@ export class DetailsCardComponent implements OnInit {
     }
 
     this.getInterests();
+    this.getCreator();
 
+  }
+
+  getCreator(){
+    this.pointsService.getCreatorById(this.point['_acl']['creator'])
+    .subscribe(user => {
+      if(user['_id'] === this.auth.userId){
+        this.userIsCreator = true;
+      }
+    })
   }
 
   addUserToInterested() {

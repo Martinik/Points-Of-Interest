@@ -1,0 +1,41 @@
+.card-wrapper :hover{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.card-wrapper {
+   
+}
+
+.point-card {
+    height: 400px;
+    /* width: 30.3333%; */
+    /* margin: 1.5%; */
+    background-color: rgba(172, 172, 172, 0.308);
+    border-radius: 10px;
+    margin: 25px;
+}
+
+.point-card :hover {
+ box-shadow: none;
+}
+
+
+.img-wrapper{
+    
+    height: 250px;
+}
+
+.img-holder {
+    
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    
+    max-height: 250px;
+}
+
+.card-img{
+    border-radius: 10px;
+    
+    max-height: 250px;
+}

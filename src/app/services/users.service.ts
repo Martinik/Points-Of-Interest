@@ -6,7 +6,9 @@ import { AuthenticationService } from '../authentication/auth.service';
 
 const appKey = "kid_ByDhot8GG" // APP KEY HERE;
 const appSecret = "e70ea79558764cc586f9a70609801142" // APP SECRET HERE;
-const usersBaseUrl = `https://baas.kinvey.com/user/${appKey}` 
+const usersBaseUrl = `https://baas.kinvey.com/user/${appKey}`
+const pointsBaseUrl = `https://baas.kinvey.com/appdata/${appKey}/Points`
+const interestsBaseUrl = `https://baas.kinvey.com/appdata/${appKey}/Interests`
 
 
 @Injectable()
@@ -15,14 +17,32 @@ export class UsersService {
   constructor(private http: HttpClient, private auth: AuthenticationService) { }
 
 
-  getUserByUsername(username: string) : Observable<Object>{
+  getUserByUsername(username: string): Observable<Object> {
     let url = `${usersBaseUrl}/?query={"username":"${username}"}`;
 
     return this.http.get<Object>(url, { headers: this.auth.createAuthHeaders('Kinvey') })
-    .catch((e: any) => Observable.throw(this.handleError(e)));
+      .catch((e: any) => Observable.throw(this.handleError(e)));
   }
 
-  editUser(userId: string, modifiedModel: Object) : Observable<Object> {
+  getUserPoints(userId: string) : Observable<Object[]> {
+
+
+    let url = `${pointsBaseUrl}/?query={"_acl.creator":"${userId}"}`;
+
+    return this.http.get<Object[]>(url, { headers: this.auth.createAuthHeaders('Kinvey') })
+      .catch((e: any) => Observable.throw(this.handleError(e)))
+
+
+  }
+
+  getUserInterests(userId: string) : Observable<Object[]> {
+    let url = `${interestsBaseUrl}/?query={"userId":"${userId}"}`;
+    
+        return this.http.get<Object[]>(url, { headers: this.auth.createAuthHeaders('Kinvey') })
+          .catch((e: any) => Observable.throw(this.handleError(e)))
+  }
+
+  editUser(userId: string, modifiedModel: Object): Observable<Object> {
     let url = `${usersBaseUrl}/${userId}`;
 
     return this.http.put<Object>(

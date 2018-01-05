@@ -63,8 +63,18 @@ export class EditComponent implements OnInit {
   }
 
   onEditSuccess(data) {
+
+
+    this.auth.authtoken = data['_kmd']['authtoken'];
+    this.auth.userId = data['_id'];
+    localStorage.setItem('authtoken', data['_kmd']['authtoken']);
+    localStorage.setItem('username', data['username']);
+    localStorage.setItem('userId', data['_id']);
+
     this.router.navigate([`/user/profile/${this.user['username']}`]);
     this.auth.changeUser(data);
+    console.log(`user edited`);
+    console.log(data);
     
   }
 

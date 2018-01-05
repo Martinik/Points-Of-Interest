@@ -37,8 +37,9 @@ export class AuthenticationService {
 
   changeUser(newUser){
     this.currentUser = newUser;
-
+    
     this.userChanged.emit(newUser);
+    console.log(`new user emitted`);
   }
 
   register(registerModel : Object) : Observable<Object> {
@@ -83,6 +84,12 @@ export class AuthenticationService {
     }
 
     return false;
+  }
+
+  destroyInMemoryCredentials(){
+    this.authtoken = undefined;
+    this.userId = undefined;
+    this.changeUser(undefined);
   }
 
   get userId() {

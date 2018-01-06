@@ -12,7 +12,7 @@ import { AuthenticationService } from '../../../authentication/auth.service';
 export class EditComponent implements OnInit {
 
   @Input() user: Object;
-  editForm: FormGroup;
+  editForm: FormGroup; 
   name: string = '';
   email: string = '';
   avatarUrl: string = '';

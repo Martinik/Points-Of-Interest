@@ -9,7 +9,7 @@ import { PointsService } from '../../../services/points.service';
 })
 export class DetailsPageComponent implements OnInit {
 
-  id: string;
+  id: string; 
   point: Object;
 
   constructor(private route: ActivatedRoute, private service: PointsService) { }

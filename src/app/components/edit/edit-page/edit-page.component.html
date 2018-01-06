@@ -1,0 +1,10 @@
+
+<div *ngIf="shouldDisplayPractical">
+  <edit-practical [point]="point" ></edit-practical>
+</div>
+
+
+<div *ngIf="shouldDisplayRecreational">
+  <!-- <edit-recreational [point]="point" [interestedUsers]="point.interestedUsers"></edit-recreational> -->
+  <edit-recreational [point]="point"></edit-recreational>
+</div>

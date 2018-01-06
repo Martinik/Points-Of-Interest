@@ -1,0 +1,45 @@
+<div *ngIf="point">
+  <div align="center" class="container">
+    <div align="center" class="form-holder">
+      <form [formGroup]="editForm" (ngSubmit)="onSubmit(editForm.value)">
+
+        <!-- Title -->
+        <div class="form-group">
+          <label for="title">Title</label>
+          <input type="text" class="form-control" id="title" placeholder="Enter Title" formControlName="title">
+          <!-- <small id="titleError" class="form-text text-muted">Title Error</small> -->
+        </div>
+
+        <!-- Description -->
+        <div class="form-group">
+          <label for="description">Description</label>
+          <textarea class="form-control" id="description" rows="3" placeholder="Describe this point" formControlName="description"></textarea>
+          <!-- <small id="descriptionError" class="form-text text-muted">Description Error</small> -->
+        </div>
+
+        <!-- location -->
+        <div class="form-group">
+          <label for="location">Location</label>
+          <input type="text" class="form-control" id="location" placeholder="Where is it?" formControlName="location">
+          <!-- <small id="locationError" class="form-text text-muted">Location Error</small> -->
+        </div>
+
+
+        <br>
+        <br>
+
+
+
+        <!-- image url -->
+        <div class="form-group">
+          <label for="imgUrl">Thumbnail</label>
+          <input type="text" class="form-control" id="imgUrl" placeholder="Enter the image URL" formControlName="imgUrl">
+          <!-- <small id="imgUrlError" class="form-text text-muted">Thumbnail Error</small> -->
+        </div>
+
+
+        <input type="submit" class="btn btn-primary" value="Edit Point" [disabled]="!editForm.valid">
+      </form>
+    </div>
+  </div>
+</div>

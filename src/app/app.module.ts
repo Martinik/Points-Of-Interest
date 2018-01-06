@@ -32,6 +32,9 @@ import { UsersService } from './services/users.service';
 import { EditComponent } from './components/users/edit/edit.component';
 import { UserPointsSectionComponent } from './components/users/user-points/user-points-section/user-points-section.component';
 import { UserPointCardComponent } from './components/users/user-points/user-point-card/user-point-card.component';
+import { EditPageComponent } from './components/edit/edit-page/edit-page.component';
+import { EditPracticalComponent } from './components/edit/edit-practical/edit-practical.component';
+import { EditRecreationalComponent } from './components/edit/edit-recreational/edit-recreational.component';
 
 
 
@@ -52,7 +55,10 @@ import { UserPointCardComponent } from './components/users/user-points/user-poin
     ProfileComponent,
     EditComponent,
     UserPointsSectionComponent,
-    UserPointCardComponent
+    UserPointCardComponent,
+    EditPageComponent,
+    EditPracticalComponent,
+    EditRecreationalComponent
   ],
   imports: [
     BrowserModule,

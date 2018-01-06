@@ -3,7 +3,7 @@
   <button id="btnInterests" (click)="changeToInterests()" class="btn btn-default point-select-btn">Your Interests</button>
 </div>
 <hr>
-<br>
+
 
 
 
@@ -12,12 +12,12 @@
 
 
     <div align="center" class="row">
-
+<div class="points-wrapper">
       <div align="center" *ngFor="let point of displayArray" class="card">
 
         <user-point-card [point]="point"></user-point-card>
 
-      </div>
+      </div></div>
 
     </div>
   </div>

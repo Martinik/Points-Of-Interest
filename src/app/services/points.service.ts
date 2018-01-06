@@ -7,7 +7,7 @@ import { AuthenticationService } from '../authentication/auth.service';
 const appKey = "kid_ByDhot8GG" // APP KEY HERE;
 const appSecret = "e70ea79558764cc586f9a70609801142" // APP SECRET HERE;
 const pointsBaseUrl = `https://baas.kinvey.com/appdata/${appKey}/Points`
-const usersBaseUrl = `https://baas.kinvey.com/user/${appKey}` 
+const usersBaseUrl = `https://baas.kinvey.com/user/${appKey}`
 
 
 @Injectable()
@@ -15,12 +15,12 @@ export class PointsService {
 
   constructor(private http: HttpClient, private auth: AuthenticationService) { }
 
-  getCreatorById(userId: string) : Observable<Object>{
+  getCreatorById(userId: string): Observable<Object> {
     let url = `${usersBaseUrl}/${userId}`;
 
-    return this.http.get<Object>(url, {headers: this.auth.createAuthHeaders('Kinvey')})
-    .catch((e: any) => Observable.throw(this.handleError(e)))
-    
+    return this.http.get<Object>(url, { headers: this.auth.createAuthHeaders('Kinvey') })
+      .catch((e: any) => Observable.throw(this.handleError(e)))
+
   }
 
   create(pointModel: any): Observable<Object> {
@@ -32,6 +32,20 @@ export class PointsService {
       }
     )
   }
+
+  editPoint(pointId, modifiedModel: Object): Observable<Object> {
+    let url = `${pointsBaseUrl}/${pointId}`;
+
+    return this.http.put<Object>(
+      url,
+      JSON.stringify(modifiedModel),
+      { headers: this.auth.createAuthHeaders('Kinvey') }
+    ).catch((e: any) => Observable.throw(this.handleError(e)));
+
+
+  }
+
+
 
   getAllPoints(): Observable<Object[]> {
 
@@ -78,7 +92,7 @@ export class PointsService {
 
   }
 
- 
+
   removeInterestedUser(userId: string, point: Object): Observable<Object> {
 
     let url = `${pointsBaseUrl}/${point['_id']}`;

@@ -1,0 +1,11 @@
+.date-picker {
+    text-align: center;
+}
+
+.form-holder{
+    margin: 20px;
+    padding: 10px;
+    width: 50%;
+    background: rgba(218, 218, 218, 0.178);
+    border-radius: 10px;
+}

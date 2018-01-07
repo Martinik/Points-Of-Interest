@@ -12,6 +12,7 @@ export class LoginFormComponent {
   public model : LoginModel;
   public loginFail : boolean;
   public username : string;
+  isLoading = false;
   @Output() userLoggedIn: EventEmitter<Object> = new EventEmitter<Object>();
 
   constructor(
@@ -23,12 +24,14 @@ export class LoginFormComponent {
   }
 
   login () : void {
+    this.isLoading = true;
     this.authService.login(this.model)
       .subscribe(
         data => {
           this.successfulLogin(data);
         },
         err => {
+          this.isLoading = false;
           this.loginFail = true;
         }
       )
@@ -39,6 +42,7 @@ export class LoginFormComponent {
   }
 
   successfulLogin(data) : void {
+    this.isLoading = false;
     this.authService.authtoken = data['_kmd']['authtoken'];
     this.authService.userId = data['_id'];
     localStorage.setItem('authtoken', data['_kmd']['authtoken']);

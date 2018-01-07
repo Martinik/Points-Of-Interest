@@ -3,11 +3,12 @@
 }
 
 .point-card {
-    height: 400px;
+    height: 450px;
     width: 30.3333%;
     margin: 1.5%;
     background-color: rgba(172, 172, 172, 0.212);
     border-radius: 10px;
+    text-overflow: ellipsis; 
 }
 
 .point-card :hover {
@@ -29,8 +30,26 @@
     max-height: 250px;
 }
 
+.search-score{
+    margin-bottom: 40px;
+}
+
 .card-img{
     border-radius: 10px;
     
     max-height: 250px;
+}
+
+.card-details{
+    margin-top: -10px;
+}
+
+hr {
+    color: black;
+    
+}
+
+.point-title {
+    height: 40px;
+    text-overflow: ellipsis; 
 }

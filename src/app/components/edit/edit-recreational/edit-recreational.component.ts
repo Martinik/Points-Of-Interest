@@ -69,7 +69,12 @@ export class EditRecreationalComponent implements OnInit {
       this.editForm.patchValue({ time: this.point['time'] });
     }
 
-    this.editForm.patchValue({ imgUrl: this.point['imgUrl'] });
+    if (!('' +this.point['imgUrl']).startsWith('./')) {
+      this.editForm.patchValue({ imgUrl: this.point['imgUrl'] });
+    } else {
+      this.editForm.patchValue({ imgUrl: '' });
+    }
+    
 
   }
 
@@ -86,10 +91,23 @@ export class EditRecreationalComponent implements OnInit {
 
 
 
-    if (post['time'] && ('' + post['time']).length > 0) {
-    } else {
+    if (!post['time'] || ('' + post['time']).length <= 0) {
       this.time = undefined;
-    }
+    } else if (!this.point['time'] || ('' + this.point['time']).length <= 0){
+
+      //time is created in wrong format
+      //fix:
+
+      let timeAsNum = Date.parse(post['time']);
+      let timeAsDate = new Date(timeAsNum);
+      let wholeTime = timeAsDate.toTimeString().split(' ')[0];
+      let timeWithoutSeconds = wholeTime.slice(0, -3);
+      this.time = timeWithoutSeconds;
+
+
+
+    } 
+
 
 
     //this line doesn't do what it is told...
@@ -147,6 +165,24 @@ export class EditRecreationalComponent implements OnInit {
     let timeElement = document.querySelector("#time input")
     timeElement['value'] = ''
     //  console.log(timeElement);
+  }
+
+  tryDelete(){
+    if (confirm("Are you sure you want to delete this Point?") == true) {
+      this.deletePoint();
+    } 
+  }
+
+  deletePoint(){
+    this.ps.deletePointInterests(this.point['_id'])
+    .subscribe(deleteInterestsData => {
+      this.ps.deletePointById(this.point['_id'])
+      .subscribe(deletePointData => this.onDeletePointSuccess(deletePointData))
+    })
+  }
+
+  onDeletePointSuccess(deletePointData){
+    this.router.navigate([`/explore`]);
   }
 
 

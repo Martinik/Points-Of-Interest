@@ -91,7 +91,14 @@ Licensed under MIT
         <div *ngIf="shouldDisplayDetails">
 
           <div *ngIf="user">
-            <user-points-section [user]="user"></user-points-section>
+            <user-points-section 
+            [defaultDisplayArray]="defaultDisplayArray"
+            [interests]="interestPoints" 
+            [createdPoints]="createdPoints" 
+            [displayArray]="displayArray" 
+            [user]="user" 
+            >
+          </user-points-section>
           </div>
         </div>
         <div *ngIf="shouldDisplayEditForm">

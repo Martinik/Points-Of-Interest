@@ -1861,3 +1861,22 @@ a.btn {
     -moz-transition-duration: 0.5s;
     -o-transition-duration: 0.5s;
 }
+
+.avatar{
+    width: 60px;
+    height: 60px;
+    /* display: block; */
+    margin-right: 15px;
+}
+
+.creator-wrapper{
+    float: left;
+    text-decoration: none;
+    margin-top: 20px;
+    margin-bottom: -5px;
+}
+
+.username-wrapper{
+    display: inline-block;
+    text-decoration: none;
+}

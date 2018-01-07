@@ -73,13 +73,16 @@
 
           <!-- create end -->
 
-        </ul>
 
-      </div>
 
-      <!-- searchbar -->
 
-      <div *ngIf="isLoggedIn">
+
+
+
+
+          <!-- searchbar -->
+
+          <!-- <div *ngIf="isLoggedIn">
         <form class="navbar-form navbar-left form-horizontal" role="search">
           <div class="input-group">
             <input type="text" class="search-box" placeholder="Search">
@@ -88,15 +91,21 @@
             </button>
           </div>
         </form>
-      </div>
-
-
-      <!-- <div *ngIf="isLoggedIn">
-        <search-bar></search-bar>
       </div> -->
 
+          <li>
+            <div id="search-wrapper" align="center">
+              <search-bar></search-bar>
+            </div>
 
-      <!-- searchbar end -->
+          </li>
+          <!-- searchbar end -->
+
+
+        </ul>
+
+      </div>
+
 
 
       <div *ngIf="isLoggedIn">
@@ -111,15 +120,15 @@
 
             <div class="logged-user-wrapper" *ngIf="loggedUser">
 
-            
+
               <a routerLink="/user/profile/{{loggedUser.username}}" class="dropdown-toggle navbar-img" data-toggle="dropdown" role="button"
                 aria-haspopup="true" aria-expanded="false">
 
-              
-                <!-- <div *ngIf="loggedUser"> -->
-                  <img src="{{loggedUser.avatarUrl}}" class="img-circle avatar" alt="Profile Image" 
-                  onerror="this.onerror=null;this.src='./../../../assets/images/default-avatar.png';"/>
-                <!-- </div> -->
+
+                
+                <img src="{{loggedUser.avatarUrl}}" class="img-circle avatar" alt="Profile Image" onerror="this.onerror=null;this.src='./../../../assets/images/default-avatar.png';"
+                />
+               
 
               </a>
               <div class="dropdown-menu-div">
@@ -144,55 +153,13 @@
 
             <!-- user NOT LOGGED -->
 
-            <!-- <div *ngIf="!loggedUser">
-              <a routerLink="/#" class="dropdown-toggle navbar-img" data-toggle="dropdown" role="button"
-                aria-haspopup="true" aria-expanded="false">
 
-                <!-- <img src="http://placehold.it/150x150" class="img-circle" alt="Profile Image" /> -->
-
-                <div class="logged-user-wrapper" *ngIf="!loggedUser">
-                  <img class="img-circle avatar" src="https://loading.io/spinners/microsoft/lg.rotating-balls-spinner.gif"  alt="Profile Image" />
-                </div>
-
-              <!-- </a> -->
-
-
-            <!-- </div> -->
-
+            <div class="logged-user-wrapper" *ngIf="!loggedUser">
+              <img class="img-circle avatar" src="https://loading.io/spinners/microsoft/lg.rotating-balls-spinner.gif" alt="Profile Image"
+              />
+            </div>
 
             <!-- end user NOT LOGGED -->
-
-
-
-
-
-
-
-
-
-            <!-- <a routerLink="/user/profile/{{loggedUser.username}}" class="dropdown-toggle navbar-img" data-toggle="dropdown" role="button"
-              aria-haspopup="true" aria-expanded="false">
-
-             
-              <div *ngIf="loggedUser">
-                <img src="{{loggedUser.avatarUrl}}" class="img-circle avatar" alt="Profile Image" />
-              </div>
-              <div *ngIf="!loggedUser">
-                <img src="https://loading.io/spinners/microsoft/lg.rotating-balls-spinner.gif" class="img-circle" alt="Profile Image" />
-              </div>
-            </a>
-            <div class="dropdown-menu-div">
-              <ul class="dropdown-menu">
-                <li>
-                  <a routerLink="/user/profile/{{loggedUser.username}}">Profile</a>
-                </li>
-                <li role="separator" class="divider"></li>
-                <li>
-                  <a routerLink="/logout">Logout</a>
-                </li>
-              </ul>
-            </div> -->
-
 
 
 
@@ -203,7 +170,7 @@
 
 
       <div *ngIf="!isLoggedIn">
-        
+
         <ul class="nav navbar-nav navbar-right">
           <!-- login -->
           <li>

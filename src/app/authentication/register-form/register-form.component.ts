@@ -14,6 +14,7 @@ export class RegisterFormComponent {
   public registeredUser: string;
   public registerSuccess: boolean;
   public registerFail: boolean;
+  isLoading = false;
 
   constructor(
     private authService: AuthenticationService,
@@ -23,6 +24,8 @@ export class RegisterFormComponent {
   }
 
   register(): void {
+
+    this.isLoading = true;
 
     let registerSubmitModel = {
       username: this.model.username,
@@ -37,6 +40,7 @@ export class RegisterFormComponent {
         this.successfulRegister(data);
       },
       err => {
+        this.isLoading = false;
         this.registerFail = true;
       }
       )
@@ -47,6 +51,7 @@ export class RegisterFormComponent {
   }
 
   successfulRegister(data): void {
+    this.isLoading = false;
     this.registerSuccess = true;
     this.registeredUser = data['username'];
 

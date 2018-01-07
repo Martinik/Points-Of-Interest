@@ -26,4 +26,4 @@ export class DetailsPageComponent implements OnInit {
     // console.log(this.point);
   }
  
-}
+} 

@@ -55,6 +55,17 @@
     margin-top: -40px;
 }
 
+.no-result-img{
+    margin-top: 40px;
+}
+
+/* .card{
+    height: 600px;
+    width: 30.3333%;
+    margin: 1.5%;
+    display: inline-block;
+} */
+
 /* .card :hover {
     box-shadow: 0 200px 200px 0 rgba(0, 0, 0, 0.2), 0 200px 200px 0 rgba(0, 0, 0, 0.19);
 } */

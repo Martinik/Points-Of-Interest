@@ -1,6 +1,12 @@
 <div align="center">
-  <button id="btnCreated" (click)="changeToCreatedPoints()" class="btn btn-default point-select-btn selected-btn">Your Points</button>
-  <button id="btnInterests" (click)="changeToInterests()" class="btn btn-default point-select-btn">Your Interests</button>
+  <button id="btnCreated" (click)="changeToCreatedPoints()" class="btn btn-default point-select-btn selected-btn">
+    <div *ngIf="userIsOwner">Your Points</div>
+    <div *ngIf="!userIsOwner">Created Points</div>
+  </button>
+  <button id="btnInterests" (click)="changeToInterests()" class="btn btn-default point-select-btn">
+    <div *ngIf="userIsOwner">Your Interests</div>
+    <div *ngIf="!userIsOwner">Interests</div>
+  </button>
 </div>
 <hr>
 
@@ -12,23 +18,28 @@
 
 
     <div align="center" class="row">
-<div class="points-wrapper">
-      <div align="center" *ngFor="let point of displayArray" class="card">
+      <div class="points-wrapper">
+        <div align="center" *ngFor="let point of displayArray" class="card">
 
-        <user-point-card [point]="point"></user-point-card>
+          <user-point-card [point]="point"></user-point-card>
 
-      </div></div>
+        </div>
+      </div>
 
     </div>
   </div>
 
 </div>
 
-<div *ngIf="!displayArray || displayArray.length < 1" align="center" class="cards-wrapper">
+<div *ngIf="!displayArray">
+    <img class="loading-img" src="https://loading.io/spinners/microsoft/lg.rotating-balls-spinner.gif" alt="loading">
+</div>
+
+<div *ngIf="displayArray && displayArray.length < 1" align="center" class="cards-wrapper">
 
   <br>
   <br>
   <br>
-  <span>Nothing here...</span>
-
+  <!-- <span>Nothing here...</span> -->
+  <img src="http://practicallyinspired.com/images/thumb-noitemsfound.png" alt="Nothing here...">
 </div>

@@ -37,7 +37,11 @@ export class EditPracticalComponent implements OnInit {
     this.editForm.patchValue({ title: this.point['title'] });
     this.editForm.patchValue({ description: this.point['description'] });
     this.editForm.patchValue({ location: this.point['location'] });
-    this.editForm.patchValue({ imgUrl: this.point['imgUrl'] });
+    if (!('' +this.point['imgUrl']).startsWith('./')) {
+      this.editForm.patchValue({ imgUrl: this.point['imgUrl'] });
+    } else {
+      this.editForm.patchValue({ imgUrl: '' });
+    }
   }
 
 
@@ -93,6 +97,25 @@ export class EditPracticalComponent implements OnInit {
         //TODO: Toastr error msg
         console.log(`ERROR DURING EDIT`);
         console.log(error);
+      }
+
+
+      tryDelete(){
+        if (confirm("Are you sure you want to delete this Point?") == true) {
+          this.deletePoint();
+        } 
+      }
+    
+      deletePoint(){
+        this.ps.deletePointInterests(this.point['_id'])
+        .subscribe(deleteInterestsData => {
+          this.ps.deletePointById(this.point['_id'])
+          .subscribe(deletePointData => this.onDeletePointSuccess(deletePointData))
+        })
+      }
+    
+      onDeletePointSuccess(deletePointData){
+        this.router.navigate([`/explore`]);
       }
 
 }

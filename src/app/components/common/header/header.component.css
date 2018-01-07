@@ -62,6 +62,12 @@
     border-radius: 22px;
   }
    
+
+
+  #search-wrapper {
+    margin-top: 8px;
+  }
+   
   .bs-dark .navbar-form button {
     border: 0;
     background: none;

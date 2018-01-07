@@ -2,7 +2,7 @@
 
   <div class="card-wrapper">
     <div class="gallery_product col-lg-4 col-md-4 col-sm-4 col-xs-6 filter hdpe point-card">
-      <h1>{{point.title}}</h1>
+     <div class="point-title"><h1>{{point.title}}</h1></div>
       <div align="center" class="align-middle img-wrapper">
         <div align="center" class="align-middle img-holder">
           <img class="img-responsive card-img " src="{{point.imgUrl}}" alt="Image not found" onerror="this.onerror=null;this.src='http://lakefarmbeef.co.nz/wp-content/themes/lakefarm/img/noimage.png';"
@@ -10,21 +10,63 @@
         </div>
       </div>
       <hr>
-      <div>
+     
 
-        <div *ngIf="interestCountFound">
-          <span>{{point.location}}</span> |
-          <span>interest: {{interestCount}}
-            <span class="glyphicon glyphicon-flash"></span>
-          </span>
-        </div>
-        <div *ngIf="!interestCountFound">
-          <span>{{point.location}}</span> |
-          <span>interest: ?
-            <span class="glyphicon glyphicon-flash"></span>
-          </span>
-        </div>
+      
+
+      <!-- search score exists -->
+      <div class="search-score" *ngIf="point.searchScore">
+
+          <div class="card-details">
+              
+                      <div *ngIf="interestCountFound">
+                        <span>{{point.location}}</span> |
+                        <span>interest: {{interestCount}}
+                          <span class="glyphicon glyphicon-flash"></span>
+                        </span>
+                      </div>
+                      <div *ngIf="!interestCountFound">
+                        <span>{{point.location}}</span> |
+                        <span>interest: ?
+                          <span class="glyphicon glyphicon-flash"></span>
+                        </span>
+                      </div>
+                    </div>
+         
+                    <br>
+        <div class="search-score">
+          Search Score: {{point.searchScore}}
+        </div>      
+        
       </div>
+
+
+      <!-- search score does not exist -->
+
+      <div class="search-score" *ngIf="!point.searchScore">
+          
+          <div class="card-details">
+              
+                      <div *ngIf="interestCountFound">
+                        <span>Location: {{point.location}}</span> 
+                        <br>
+                       
+                        <br>
+                        <span>Interest: {{interestCount}}
+                          <span class="glyphicon glyphicon-flash"></span>
+                        </span>
+                      </div>
+                      <div *ngIf="!interestCountFound">
+                        <span>Location: {{point.location}}</span> 
+                        <br>
+                      
+                        <br>
+                        <span>Interest: unknown</span>
+                      </div>
+                    </div>
+         
+       </div>
+
     </div>
   </div>
 </a>

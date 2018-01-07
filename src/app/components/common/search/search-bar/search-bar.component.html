@@ -1,12 +1,15 @@
+<div id="imaginary_container">
+  <div class="input-group stylish-input-group">
 
-  <form class="navbar-form navbar-left form-horizontal" role="search">
-    <div class="input-group">
-      <input type="text" class="search-box" placeholder="Search">
-      <button type="submit" class="btn">
-        <span class="glyphicon glyphicon-search"></span>
-      </button>
-    </div>
-  </form>
-  <!-- ------ -->
+    <input (keyup.enter)="getResults(query)" [(ngModel)]="query" type="text" class="form-control" placeholder="Search">
 
+    <span class="search-btn-wrapper" class="input-group-addon">
+      <a routerLink="/search/{{query}}">
+        <button class="search-btn" type="submit">
+          <span class="glyphicon glyphicon-search"></span>
+        </button>
+      </a>
+    </span>
 
+  </div>
+</div>

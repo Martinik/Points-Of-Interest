@@ -14,6 +14,13 @@ import { HomeComponent } from './components/home/home.component';
 import { HeaderComponent } from './components/common/header/header.component';
 import { SearchBarComponent } from './components/common/search/search-bar/search-bar.component';
 import { ProfileComponent } from './components/users/profile/profile.component';
+import { EditComponent } from './components/users/edit/edit.component';
+import { UserPointsSectionComponent } from './components/users/user-points/user-points-section/user-points-section.component';
+import { UserPointCardComponent } from './components/users/user-points/user-point-card/user-point-card.component';
+import { EditPageComponent } from './components/edit/edit-page/edit-page.component';
+import { EditPracticalComponent } from './components/edit/edit-practical/edit-practical.component';
+import { EditRecreationalComponent } from './components/edit/edit-recreational/edit-recreational.component';
+import { SearchResultsPageComponent } from './components/common/search/search-results-page/search-results-page.component';
 
 // Services
 import { AuthGuard } from './guards/auth.guard.service';
@@ -29,12 +36,7 @@ import { SubmitCommentFormComponent } from './components/details/comments/submit
 import { CommentsService } from './services/comments.service';
 import { InterestsService } from './services/interests.service';
 import { UsersService } from './services/users.service';
-import { EditComponent } from './components/users/edit/edit.component';
-import { UserPointsSectionComponent } from './components/users/user-points/user-points-section/user-points-section.component';
-import { UserPointCardComponent } from './components/users/user-points/user-point-card/user-point-card.component';
-import { EditPageComponent } from './components/edit/edit-page/edit-page.component';
-import { EditPracticalComponent } from './components/edit/edit-practical/edit-practical.component';
-import { EditRecreationalComponent } from './components/edit/edit-recreational/edit-recreational.component';
+
 
 
 
@@ -58,7 +60,8 @@ import { EditRecreationalComponent } from './components/edit/edit-recreational/e
     UserPointCardComponent,
     EditPageComponent,
     EditPracticalComponent,
-    EditRecreationalComponent
+    EditRecreationalComponent,
+    SearchResultsPageComponent
   ],
   imports: [
     BrowserModule,

@@ -17,17 +17,21 @@ export class DetailsCardComponent implements OnInit {
   userIsInterested: boolean = false;
   interests: Object[];
   interestCount: number;
-  interestIsLoading: boolean = true; 
+  interestIsLoading: boolean = true;
   userIsCreator: boolean = false;
+  creator: Object;
 
   constructor(private auth: AuthenticationService, private pointsService: PointsService, private interestsService: InterestsService) { }
 
   ngOnInit() {
-    if (this.point['date'] && this.point['date'].length > 0) {
-      this.shouldDisplayDate = true;
-    }
-    if (this.point['time'] && this.point['time'].length > 0) {
-      this.shouldDisplayTime = true;
+
+    if (this.point['type'] === 'recreational') {
+      if (this.point['date'] && this.point['date'].length > 0) {
+        this.shouldDisplayDate = true;
+      }
+      if (this.point['time'] && this.point['time'].length > 0) {
+        this.shouldDisplayTime = true;
+      }
     }
 
     this.getInterests();
@@ -35,18 +39,19 @@ export class DetailsCardComponent implements OnInit {
 
   }
 
-  getCreator(){
+  getCreator() {
     this.pointsService.getCreatorById(this.point['_acl']['creator'])
-    .subscribe(user => {
-      if(user['_id'] === this.auth.userId){
-        this.userIsCreator = true;
-      }
-    })
+      .subscribe(user => {
+        if (user['_id'] === this.auth.userId) {
+          this.userIsCreator = true;
+        }
+        this.creator = user;
+      })
   }
 
   addUserToInterested() {
     let currentUserId = this.auth.userId;
-   
+
     this.checkIfUserInterested();
 
     if (this.userIsInterested) {
@@ -62,9 +67,9 @@ export class DetailsCardComponent implements OnInit {
   }
 
   removeUserFromInterested() {
-    
+
     let currentUserId = this.auth.userId;
- 
+
     this.checkIfUserInterested();
 
     if (!this.userIsInterested) {
@@ -79,30 +84,30 @@ export class DetailsCardComponent implements OnInit {
 
   }
 
-  onRemoveInterestSuccess(data){
+  onRemoveInterestSuccess(data) {
 
     this.interestCount--;
     this.userIsInterested = false;
 
     this.onAddRemoveSuccess(data);
   }
-  onAddInterestSuccess(data){
+  onAddInterestSuccess(data) {
 
     this.interestCount++;
     this.userIsInterested = true;
-    
-    this.onAddRemoveSuccess(data); 
+
+    this.onAddRemoveSuccess(data);
   }
 
   onAddRemoveSuccess(data) {
- 
+
     this.interestIsLoading = false;
     this.getInterests();
 
   }
 
   findInterestCount() {
-  
+
     this.interestCount = this.interests.length;
   }
 
@@ -113,7 +118,7 @@ export class DetailsCardComponent implements OnInit {
   onGetInterestsSuccess(interests) {
 
     this.interestIsLoading = false;
-    
+
     this.interests = interests
 
     this.checkIfUserInterested();
@@ -122,7 +127,7 @@ export class DetailsCardComponent implements OnInit {
   }
 
   checkIfUserInterested() {
-  
+
     let currentUserId = this.auth.userId;
     let interestsContainingCurrentUser = this.interests.filter(i => i['userId'] === currentUserId);
 

@@ -8,6 +8,7 @@ const appKey = "kid_ByDhot8GG" // APP KEY HERE;
 const appSecret = "e70ea79558764cc586f9a70609801142" // APP SECRET HERE;
 const pointsBaseUrl = `https://baas.kinvey.com/appdata/${appKey}/Points`
 const usersBaseUrl = `https://baas.kinvey.com/user/${appKey}`
+const interestsBaseUrl = `https://baas.kinvey.com/appdata/${appKey}/Interests`
 
 
 @Injectable()
@@ -43,6 +44,32 @@ export class PointsService {
     ).catch((e: any) => Observable.throw(this.handleError(e)));
 
 
+  }
+
+  deletePointInterests(pointId: string): Observable<Object> {
+    
+    // ?query={"type":"${pointType}"}
+    
+    let url = `${interestsBaseUrl}/?query={"pointId":"${pointId}"}`;
+    
+    return this.http.delete<Object>(url, {
+      headers: this.auth.createAuthHeaders('Kinvey')
+    }).catch((e: any) => Observable.throw(this.handleError(e)));
+  }
+
+  deletePointById(pointId: string) : Observable<Object> {
+    let url = `${pointsBaseUrl}/${pointId}`;
+
+    return this.http.delete(url, {headers: this.auth.createAuthHeaders('Kinvey')} )
+    .catch((e: any) => Observable.throw(this.handleError(e)));
+  }
+
+  getPointInterests(pointId){
+    let url = `${interestsBaseUrl}/?query={"pointId":"${pointId}"}`;
+    
+        return this.http.get<Object[]>(url, { headers: this.auth.createAuthHeaders('Kinvey') })
+          .catch((e: any) => Observable.throw(this.handleError(e)))
+    
   }
 
 

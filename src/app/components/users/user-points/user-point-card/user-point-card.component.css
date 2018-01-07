@@ -39,3 +39,8 @@
     
     max-height: 250px;
 }
+
+.point-title {
+    height: 40px;
+    text-overflow: ellipsis; 
+}

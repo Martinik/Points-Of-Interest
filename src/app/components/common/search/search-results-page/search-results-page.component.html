@@ -1,0 +1,66 @@
+<div class="container">
+
+  <div class="row">
+    <div class="gallery col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <h1 class="gallery-title">Search Results</h1>
+    </div>
+
+    <!-- <div class="link-buttons" align="center">
+        <a routerLink="/explore/practical" class="btn btn-default filter-button" data-filter="all">Practical</a>
+        <a routerLink="/explore/all" class="btn btn-default filter-button" data-filter="all">All</a>
+        <a routerLink="/explore/recreational" class="btn btn-default filter-button" data-filter="all">Recreational</a>
+      </div>
+      <br/> -->
+
+    <div *ngIf="filteredResults" align="center" class="cards-wrapper">
+      <div *ngFor="let point of filteredResults" class="card">
+        <div>
+          <point-card [point]="point"></point-card>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="!filteredResults">
+      <div *ngIf="thinkingNum == 1">
+        <img src="https://media.giphy.com/media/SabSYEpsVh0di/giphy.gif" alt="loading">
+      </div>
+      <div *ngIf="thinkingNum == 2">
+        <img src="https://media.giphy.com/media/d3mlE7uhX8KFgEmY/source.gif" alt="loading">
+      </div>
+      <div *ngIf="thinkingNum == 3">
+        <img src="https://m.popkey.co/88142a/kvDwl.gif" alt="loading">
+      </div>
+      <div *ngIf="thinkingNum == 4">
+        <img src="https://m.popkey.co/a19643/8wEd_f-maxage-0.gif" alt="loading">
+      </div>
+      <div *ngIf="thinkingNum == 5">
+        <img src="https://m.popkey.co/5de5ab/Rkvm3.gif" alt="loading">
+      </div>
+      <div *ngIf="thinkingNum == 6">
+        <img src="https://media.giphy.com/media/GThPmkilGaCC4/giphy.gif" alt="loading">
+      </div>
+      <div *ngIf="thinkingNum == 7">
+        <img src="https://media1.tenor.com/images/4c6187594727c6937f0ed9c4cbaf7249/tenor.gif?itemid=8949118" alt="loading">
+      </div>
+      <div *ngIf="thinkingNum == 8">
+        <img src="https://media1.tenor.com/images/046c5cfdfb264975a4ed2bb10f71d778/tenor.gif?itemid=5174244" alt="loading">
+      </div>
+      <div *ngIf="thinkingNum == 9">
+        <img src="https://media1.tenor.com/images/a681ffe0d41a4c64d0ef00e6e013fe3e/tenor.gif?itemid=9822316" alt="loading">
+      </div>
+      <div *ngIf="thinkingNum == 10">
+        <img src="https://m.popkey.co/041410/dW956.gif" alt="loading">
+      </div>
+    </div>
+
+    <div *ngIf="filteredResults && filteredResults['length'] < 1">
+      <br>
+      <br>
+      <br>
+      <div class="gallery col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <img class="no-result-img" src="http://practicallyinspired.com/images/thumb-noitemsfound.png" alt="Nothing here...">
+      </div>
+    </div>
+
+  </div>
+</div>

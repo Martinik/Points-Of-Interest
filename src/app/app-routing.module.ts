@@ -14,6 +14,7 @@ import { DetailsPageComponent } from './components/details/details-page/details-
 import { AuthGuard } from './guards/auth.guard.service';
 import { ProfileComponent } from './components/users/profile/profile.component';
 import { EditPageComponent } from './components/edit/edit-page/edit-page.component';
+import { SearchResultsPageComponent } from './components/common/search/search-results-page/search-results-page.component';
 
 const routes : Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -26,7 +27,9 @@ const routes : Routes = [
   { path: 'explore', canActivate: [ AuthGuard ], component: ExplorePageComponent },
   { path: 'details/:id', canActivate: [ AuthGuard ], component: DetailsPageComponent },
   { path: 'user/:action/:username', canActivate: [ AuthGuard ], component: ProfileComponent },
-  { path: 'edit/:id', canActivate: [ AuthGuard ], component: EditPageComponent }
+  { path: 'edit/:id', canActivate: [ AuthGuard ], component: EditPageComponent },
+  { path: 'search/:query', canActivate: [ AuthGuard ], component: SearchResultsPageComponent },
+  { path: 'search', canActivate: [ AuthGuard ], component: SearchResultsPageComponent }
 ]
 @NgModule({
   imports: [ RouterModule.forRoot(routes) ],

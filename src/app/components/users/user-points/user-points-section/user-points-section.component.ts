@@ -1,6 +1,9 @@
-import { Component, OnInit, Input, transition } from '@angular/core';
+import { Component, OnInit, Input, transition, Output, EventEmitter } from '@angular/core';
 import { UsersService } from '../../../../services/users.service';
 import { PointsService } from '../../../../services/points.service';
+import { AuthenticationService } from '../../../../authentication/auth.service';
+import { ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'user-points-section',
@@ -10,21 +13,52 @@ import { PointsService } from '../../../../services/points.service';
 export class UserPointsSectionComponent implements OnInit {
 
   @Input() user: Object;
-  createdPoints: Object[];
-  interests: Object[];
-  shouldDisplayCreated: boolean = true;
-  displayArray: Object[];
+  
+  @Input() createdPoints: Object[];
+  @Input() interests: Object[]; 
+  @Input() defaultDisplayArray: string;
+  @Input() displayArray: Object[];
+  userIsOwner: boolean = false;
+
 
   refreshInterestsCounter: number;
 
-  defaultDisplayArray: string = 'created'   // change to alter default view ('created' || 'interests')
+  // defaultDisplayArray: string = 'created'   // change to alter default view ('created' || 'interests')
   // defaultDisplayArray: string = 'interests'   // change to alter default view ('created' || 'interests')
 
 
-  constructor(private usersService: UsersService, private pointsService: PointsService) { }
+  constructor(private route: ActivatedRoute, private usersService: UsersService, private pointsService: PointsService, private auth: AuthenticationService) { }
 
   ngOnInit() {
-    this.initArrays();
+    console.log('ngonitit user id ');
+    console.log(this.user['_id']);
+    if (this.user['_id'] === this.auth.userId) {
+      this.userIsOwner = true;
+    }
+    // this.initArrays();
+    this.subscribeToRoute();
+  }
+
+  private subscribeToRoute() {
+    this.route.params.subscribe(
+      params => {
+        console.log('route change user id ');
+        console.log(this.user['_id']);
+        
+        if (this.user['_id'] === this.auth.userId) {
+          this.userIsOwner = true;
+        }
+
+        if(this.defaultDisplayArray === 'created'){
+          this.changeToCreatedPoints();
+        }
+        if(this.defaultDisplayArray === 'recreational'){
+          this.changeToInterests();
+        }
+        // this.initArrays();
+
+        // this.linkChanged.emit();
+      });
   }
 
   initArrays() {
@@ -33,8 +67,8 @@ export class UserPointsSectionComponent implements OnInit {
 
     this.usersService.getUserInterests(this.user['_id'])
       .subscribe(recievedInterests => {
-        console.log(`........rcintrst`);
-        console.log(recievedInterests);
+        // console.log(`........rcintrst`);
+        // console.log(recievedInterests);
         this.onGetInterestsSuccess(recievedInterests)
       });
 
@@ -44,8 +78,8 @@ export class UserPointsSectionComponent implements OnInit {
   onGetCreatedSuccess(recievedPoints) {
     this.createdPoints = recievedPoints;
 
-    console.log(`recieved points:`);
-    console.log(recievedPoints);
+    // console.log(`recieved points:`);
+    // console.log(recievedPoints);
 
     if (this.defaultDisplayArray === 'created') {
       this.displayArray = this.createdPoints;
@@ -59,19 +93,19 @@ export class UserPointsSectionComponent implements OnInit {
 
   //black magic fuckery goes here...
   onGetInterestsSuccess(recievedInterests) {
-    console.log(recievedInterests);
+    // console.log(recievedInterests);
     this.interests = recievedInterests;
 
-    console.log(`recieved interests:`);
-    console.log(recievedInterests);
+    // console.log(`recieved interests:`);
+    // console.log(recievedInterests);
 
     this.refreshInterestsCounter = this.interests.length;
 
     let tempInterestsArr = this.interests;
-    console.log(`-------------`);
-    console.log(this.interests);
-    console.log(tempInterestsArr);
-    console.log(`-------------`);
+    // console.log(`-------------`);
+    // console.log(this.interests);
+    // console.log(tempInterestsArr);
+    // console.log(`-------------`);
 
 
     for (let interestIndex in tempInterestsArr) {
@@ -86,8 +120,8 @@ export class UserPointsSectionComponent implements OnInit {
 
 
         this.onGetInterestPointSuccess();
-        console.log(interestIndex);
-        console.log(this.interests);
+        // console.log(interestIndex);
+        // console.log(this.interests);
       });
     }
 
@@ -99,8 +133,8 @@ export class UserPointsSectionComponent implements OnInit {
 
     if (this.refreshInterestsCounter <= 0 && this.defaultDisplayArray === 'interests') {
       this.displayArray = this.interests;
-      console.log(`interests updated!`);
-      console.log(this.interests);
+      // console.log(`interests updated!`);
+      // console.log(this.interests);
     }
   }
 

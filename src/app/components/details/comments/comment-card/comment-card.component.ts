@@ -10,6 +10,7 @@ import { AuthenticationService } from '../../../../authentication/auth.service';
 export class CommentCardComponent implements OnInit {
 
   @Input() comment: any;
+  @Input() userIsAdmin: boolean;
   @Output() commentDeleted: EventEmitter<Object> = new EventEmitter<Object>();
   commentAuthor: any;
   userIsAuthor: boolean = false;

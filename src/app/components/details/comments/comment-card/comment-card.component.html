@@ -37,7 +37,7 @@
         </div>
         <h6 class="text-muted time">{{comment._kmd.ect | date: 'medium'}}</h6>
       </div>
-      <div *ngIf="userIsAuthor" class="pull-right">
+      <div *ngIf="userIsAuthor || userIsAdmin" class="pull-right">
         <button (click)="deleteComment()" class="btn btn-danger">Delete</button>
       </div>
     </div>

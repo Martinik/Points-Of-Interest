@@ -13,9 +13,9 @@ import { ActivatedRoute } from '@angular/router';
 export class UserPointsSectionComponent implements OnInit {
 
   @Input() user: Object;
-  
+
   @Input() createdPoints: Object[];
-  @Input() interests: Object[]; 
+  @Input() interests: Object[];
   @Input() defaultDisplayArray: string;
   @Input() displayArray: Object[];
   userIsOwner: boolean = false;
@@ -44,15 +44,15 @@ export class UserPointsSectionComponent implements OnInit {
       params => {
         console.log('route change user id ');
         console.log(this.user['_id']);
-        
+
         if (this.user['_id'] === this.auth.userId) {
           this.userIsOwner = true;
         }
 
-        if(this.defaultDisplayArray === 'created'){
+        if (this.defaultDisplayArray === 'created') {
           this.changeToCreatedPoints();
         }
-        if(this.defaultDisplayArray === 'recreational'){
+        if (this.defaultDisplayArray === 'recreational') {
           this.changeToInterests();
         }
         // this.initArrays();
@@ -146,8 +146,16 @@ export class UserPointsSectionComponent implements OnInit {
     let btnCreated = document.getElementById("btnCreated");
     let btnInterests = document.getElementById("btnInterests");
 
-    btnCreated.classList.add("selected-btn");
-    btnInterests.classList.remove("selected-btn"); 
+    if (btnCreated) {
+
+      btnCreated.classList.add("selected-btn");
+    }
+
+    if (btnInterests) {
+
+      btnInterests.classList.remove("selected-btn");
+    }
+
   }
 
   changeToInterests() {
@@ -156,9 +164,20 @@ export class UserPointsSectionComponent implements OnInit {
     let btnCreated = document.getElementById("btnCreated");
     let btnInterests = document.getElementById("btnInterests");
 
-    btnInterests.classList.add("selected-btn");
-    btnCreated.classList.remove("selected-btn"); 
+
+    if (btnCreated) {
+
+      btnCreated.classList.remove("selected-btn");
+    }
+
+    if (btnInterests) {
+
+      btnInterests.classList.add("selected-btn");
+    }
+
     
+   
+
 
   }
 

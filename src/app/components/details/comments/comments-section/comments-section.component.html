@@ -6,7 +6,7 @@
     <div *ngIf="comments">
 
       <div *ngFor="let comment of comments">
-        <comment-card (commentDeleted)="handleCommentDeletion($event)" [comment]="comment"></comment-card>
+        <comment-card (commentDeleted)="handleCommentDeletion($event)" [userIsAdmin]="userIsAdmin" [comment]="comment"></comment-card>
       </div>
 
     </div>

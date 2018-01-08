@@ -36,6 +36,9 @@ import { SubmitCommentFormComponent } from './components/details/comments/submit
 import { CommentsService } from './services/comments.service';
 import { InterestsService } from './services/interests.service';
 import { UsersService } from './services/users.service';
+import { OwnerGuard } from './guards/owner.guard';
+import { ProfileGuard } from './guards/profile.guard';
+import { PageNotFoundComponent } from './components/common/error/page-not-found/page-not-found.component';
 
 
 
@@ -61,7 +64,8 @@ import { UsersService } from './services/users.service';
     EditPageComponent,
     EditPracticalComponent,
     EditRecreationalComponent,
-    SearchResultsPageComponent
+    SearchResultsPageComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -73,10 +77,13 @@ import { UsersService } from './services/users.service';
   ],
   providers: [
     AuthGuard,
+    OwnerGuard,
+    ProfileGuard,
     PointsService,
     CommentsService,
     InterestsService,
     UsersService
+
   ],
   bootstrap: [AppComponent]
 })

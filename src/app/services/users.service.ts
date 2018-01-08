@@ -24,6 +24,13 @@ export class UsersService {
       .catch((e: any) => Observable.throw(this.handleError(e)));
   }
 
+  getUserById(userId: string): Observable<Object> {
+    let url = `${usersBaseUrl}/${userId}`;
+
+    return this.http.get<Object>(url, { headers: this.auth.createAuthHeaders('Kinvey') })
+      .catch((e: any) => Observable.throw(this.handleError(e)));
+  }
+
   getUserPoints(userId: string) : Observable<Object[]> {
 
 

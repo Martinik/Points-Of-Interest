@@ -9,12 +9,15 @@ import { LogoutComponent } from './authentication/logout-component/logout.compon
 import { CreatePointComponent } from './components/create-point/create-point.component';
 import { ExplorePageComponent } from './components/explore/explore-page/explore-page.component';
 import { DetailsPageComponent } from './components/details/details-page/details-page.component';
-
-// Guards
-import { AuthGuard } from './guards/auth.guard.service';
 import { ProfileComponent } from './components/users/profile/profile.component';
 import { EditPageComponent } from './components/edit/edit-page/edit-page.component';
 import { SearchResultsPageComponent } from './components/common/search/search-results-page/search-results-page.component';
+
+// Guards
+import { AuthGuard } from './guards/auth.guard.service';
+import { OwnerGuard } from './guards/owner.guard';
+import { ProfileGuard } from './guards/profile.guard';
+import { PageNotFoundComponent } from './components/common/error/page-not-found/page-not-found.component';
 
 const routes : Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -26,10 +29,12 @@ const routes : Routes = [
   { path: 'explore/:type', canActivate: [ AuthGuard ], component: ExplorePageComponent },
   { path: 'explore', canActivate: [ AuthGuard ], component: ExplorePageComponent },
   { path: 'details/:id', canActivate: [ AuthGuard ], component: DetailsPageComponent },
-  { path: 'user/:action/:username', canActivate: [ AuthGuard ], component: ProfileComponent },
-  { path: 'edit/:id', canActivate: [ AuthGuard ], component: EditPageComponent },
+  { path: 'user/:action/:username', canActivate: [ AuthGuard, ProfileGuard ], component: ProfileComponent },
+  { path: 'edit/:id', canActivate: [ AuthGuard, OwnerGuard ], component: EditPageComponent },
   { path: 'search/:query', canActivate: [ AuthGuard ], component: SearchResultsPageComponent },
-  { path: 'search', canActivate: [ AuthGuard ], component: SearchResultsPageComponent }
+  { path: 'search', canActivate: [ AuthGuard ], component: SearchResultsPageComponent },
+  {path: '404', component: PageNotFoundComponent},
+  {path: '**', redirectTo: '/404'}
 ]
 @NgModule({
   imports: [ RouterModule.forRoot(routes) ],

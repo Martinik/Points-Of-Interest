@@ -12,13 +12,14 @@ import { AuthenticationService } from '../../../authentication/auth.service';
 export class EditComponent implements OnInit {
 
   @Input() user: Object;
-  editForm: FormGroup; 
+  @Input() userIsAdmin: boolean;
+  editForm: FormGroup;
   name: string = '';
   email: string = '';
   avatarUrl: string = '';
   emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-  
+
   constructor(private service: UsersService, private auth: AuthenticationService, private fb: FormBuilder,
     private router: Router) {
     this.editForm = this.fb.group({
@@ -52,7 +53,7 @@ export class EditComponent implements OnInit {
 
     // https://cdn1.iconfinder.com/data/icons/mix-color-4/502/Untitled-1-512.png
 
-    if(!editModel['avatarUrl'] || editModel['avatarUrl'].length <= 0){
+    if (!editModel['avatarUrl'] || editModel['avatarUrl'].length <= 0) {
 
       editModel['avatarUrl'] = `https://cdn1.iconfinder.com/data/icons/mix-color-4/502/Untitled-1-512.png`;
     }
@@ -64,18 +65,23 @@ export class EditComponent implements OnInit {
 
   onEditSuccess(data) {
 
+    if (this.auth.userId === data['_id']) { //change the logged user info only if changed by profile owner, NOT by Admin
 
-    this.auth.authtoken = data['_kmd']['authtoken'];
-    this.auth.userId = data['_id'];
-    localStorage.setItem('authtoken', data['_kmd']['authtoken']);
-    localStorage.setItem('username', data['username']);
-    localStorage.setItem('userId', data['_id']);
+      this.auth.authtoken = data['_kmd']['authtoken'];
+      this.auth.userId = data['_id'];
+      localStorage.setItem('authtoken', data['_kmd']['authtoken']);
+      localStorage.setItem('username', data['username']);
+      localStorage.setItem('userId', data['_id']);
+
+      this.auth.changeUser(data);
+
+    }
 
     this.router.navigate([`/user/profile/${this.user['username']}`]);
-    this.auth.changeUser(data);
+
     console.log(`user edited`);
     console.log(data);
-    
+
   }
 
 }

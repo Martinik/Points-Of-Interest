@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { AuthenticationService } from '../../../authentication/auth.service'
 import { PointsService } from '../../../services/points.service'
 import { InterestsService } from '../../../services/interests.service'
+import { UsersService } from '../../../services/users.service';
 
 
 @Component({
@@ -19,9 +20,13 @@ export class DetailsCardComponent implements OnInit {
   interestCount: number;
   interestIsLoading: boolean = true;
   userIsCreator: boolean = false;
+  userIsAdmin: boolean = false; 
   creator: Object;
 
-  constructor(private auth: AuthenticationService, private pointsService: PointsService, private interestsService: InterestsService) { }
+  constructor(private auth: AuthenticationService, 
+    private pointsService: PointsService, 
+    private interestsService: InterestsService,
+    private usersService: UsersService) { }
 
   ngOnInit() {
 
@@ -35,8 +40,18 @@ export class DetailsCardComponent implements OnInit {
     }
 
     this.getInterests();
+    this.CheckIfUserAdmin();
     this.getCreator();
 
+  }
+
+  CheckIfUserAdmin(){
+    this.usersService.getUserById(this.auth.userId)
+    .subscribe(recUser => {
+      if(recUser['isAdmin']){
+        this.userIsAdmin = true;
+      }
+    })
   }
 
   getCreator() {

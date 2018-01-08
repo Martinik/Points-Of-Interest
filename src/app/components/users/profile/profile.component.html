@@ -33,8 +33,8 @@ Licensed under MIT
 
         <!-- SIDEBAR MENU -->
 
-        <!-- USER IS OWNER OF PROFILE -->
-        <div *ngIf="userIsOwnerOfProfile" class="profile-usermenu">
+        <!-- USER IS OWNER OF PROFILE OR ADMIN -->
+        <div *ngIf="userIsOwnerOfProfile || userIsAdmin" class="profile-usermenu">
           <ul class="nav">
             <!-- <li class="active"> -->
             <li>
@@ -103,7 +103,7 @@ Licensed under MIT
         </div>
         <div *ngIf="shouldDisplayEditForm">
           <div *ngIf="user">
-            <edit-user [user]="user"></edit-user>
+            <edit-user [user]="user" [userIsAdmin]="userIsAdmin"></edit-user>
           </div>
         </div>
       </div>

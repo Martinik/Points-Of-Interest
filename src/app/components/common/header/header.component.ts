@@ -32,6 +32,8 @@ export class HeaderComponent implements OnInit {
     // this.authService.getLoggedUser().subscribe(user => this.loggedUser = user);
 
     this.loggedUser = this.authService.currentUser;
+
+    
   }
 
   toggleNavDropDown(){

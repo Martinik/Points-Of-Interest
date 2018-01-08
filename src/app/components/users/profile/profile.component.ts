@@ -25,6 +25,7 @@ export class ProfileComponent implements OnInit {
   refreshInterestsCounter: number;
   defaultDisplayArray: string = 'created';
   displayArray: Object[];
+  userIsAdmin: boolean = false;
 
   constructor(private route: ActivatedRoute, private service: UsersService, private auth: AuthenticationService, private pointsService: PointsService) {
 
@@ -32,6 +33,7 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
 
+    this.CheckIfUserAdmin();
 
     this.username = this.route.snapshot.paramMap.get('username');
     // this.getUser();
@@ -56,11 +58,17 @@ export class ProfileComponent implements OnInit {
       });
   }
 
+  CheckIfUserAdmin(){
+    this.service.getUserById(this.auth.userId)
+    .subscribe(recUser => {
+      if(recUser['isAdmin']){
+        this.userIsAdmin = true;
+      }
+    })
+  }
+
 
   getUser() {
-
-
-
     this.service.getUserByUsername(this.username)
       .subscribe(foundUsers => this.onGetUserSuccess(foundUsers))
   }

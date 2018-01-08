@@ -61,12 +61,14 @@ export class OwnerGuard implements CanActivate {
       this.ps.getPointById(pointId).toPromise()
         .then(data => {
          
-          if (data['_acl']['creator'] === user['userId']) {
+          if (data['_acl']['creator'] === user['_id']) {
             return true;
           }
-          console.log(`GUARD -> current user `);
-          console.log(user);
-          if (user['isAdmin']) {
+          console.log(`GUARD -> current user id `);
+          console.log(user['userId']);
+          console.log('creator:');
+          console.log(data['_acl']['creator']);
+          if (user['isAdmin']) { 
             return true;
           }
 

@@ -1,12 +1,15 @@
-import { Component }  from "@angular/core";
+import { Component, OnInit } from '@angular/core';
 
 @Component({
-  templateUrl: './home.components.html'
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.css']
 })
-export class HomeComponent { 
-  public username : string;
+export class HomeComponent implements OnInit {
 
-  constructor() {
-    this.username = localStorage.getItem('username');
+  constructor() { }
+
+  ngOnInit() {
   }
+
 }

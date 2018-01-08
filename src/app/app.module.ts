@@ -21,6 +21,8 @@ import { EditPageComponent } from './components/edit/edit-page/edit-page.compone
 import { EditPracticalComponent } from './components/edit/edit-practical/edit-practical.component';
 import { EditRecreationalComponent } from './components/edit/edit-recreational/edit-recreational.component';
 import { SearchResultsPageComponent } from './components/common/search/search-results-page/search-results-page.component';
+import { PageNotFoundComponent } from './components/common/error/page-not-found/page-not-found.component';
+
 
 // Services
 import { AuthGuard } from './guards/auth.guard.service';
@@ -38,7 +40,7 @@ import { InterestsService } from './services/interests.service';
 import { UsersService } from './services/users.service';
 import { OwnerGuard } from './guards/owner.guard';
 import { ProfileGuard } from './guards/profile.guard';
-import { PageNotFoundComponent } from './components/common/error/page-not-found/page-not-found.component';
+
 
 
 

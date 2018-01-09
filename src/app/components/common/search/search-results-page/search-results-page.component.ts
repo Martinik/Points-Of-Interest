@@ -17,7 +17,7 @@ export class SearchResultsPageComponent implements OnInit {
   constructor(private route: ActivatedRoute, private service: PointsService) { }
 
   ngOnInit() {
-    console.log(`****INITED`);
+    // console.log(`****INITED`);
     this.searchQuery = this.route.snapshot.paramMap.get('query');
     this.fixSearchQuery();
     this.subscribeToRoute();
@@ -25,8 +25,8 @@ export class SearchResultsPageComponent implements OnInit {
   }
 
   private subscribeToRoute() {
-    console.log(`****SUBSCRIBING`);
-    console.log(`**** 1`);
+    // console.log(`****SUBSCRIBING`);
+    // console.log(`**** 1`);
     this.route.params.subscribe(
       params => {
         this.getThinkingNum();
@@ -38,7 +38,9 @@ export class SearchResultsPageComponent implements OnInit {
   }
 
   getThinkingNum(){
-    this.thinkingNum = Math.floor((Math.random() * 10) + 1);
+    // this.thinkingNum = Math.floor((Math.random() * 10) + 1);
+    
+    this.thinkingNum = 1; //Random GIF feature currently turned off
   }
 
   fixSearchQuery() {

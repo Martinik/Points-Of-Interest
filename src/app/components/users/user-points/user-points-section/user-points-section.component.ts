@@ -67,8 +67,7 @@ export class UserPointsSectionComponent implements OnInit {
 
     this.usersService.getUserInterests(this.user['_id'])
       .subscribe(recievedInterests => {
-        // console.log(`........rcintrst`);
-        // console.log(recievedInterests);
+     
         this.onGetInterestsSuccess(recievedInterests)
       });
 
@@ -78,8 +77,6 @@ export class UserPointsSectionComponent implements OnInit {
   onGetCreatedSuccess(recievedPoints) {
     this.createdPoints = recievedPoints;
 
-    // console.log(`recieved points:`);
-    // console.log(recievedPoints);
 
     if (this.defaultDisplayArray === 'created') {
       this.displayArray = this.createdPoints;
@@ -91,21 +88,16 @@ export class UserPointsSectionComponent implements OnInit {
 
   }
 
-  //black magic fuckery goes here...
+  
   onGetInterestsSuccess(recievedInterests) {
-    // console.log(recievedInterests);
+   
     this.interests = recievedInterests;
 
-    // console.log(`recieved interests:`);
-    // console.log(recievedInterests);
+    
 
     this.refreshInterestsCounter = this.interests.length;
 
     let tempInterestsArr = this.interests;
-    // console.log(`-------------`);
-    // console.log(this.interests);
-    // console.log(tempInterestsArr);
-    // console.log(`-------------`);
 
 
     for (let interestIndex in tempInterestsArr) {
@@ -120,8 +112,6 @@ export class UserPointsSectionComponent implements OnInit {
 
 
         this.onGetInterestPointSuccess();
-        // console.log(interestIndex);
-        // console.log(this.interests);
       });
     }
 
@@ -133,8 +123,6 @@ export class UserPointsSectionComponent implements OnInit {
 
     if (this.refreshInterestsCounter <= 0 && this.defaultDisplayArray === 'interests') {
       this.displayArray = this.interests;
-      // console.log(`interests updated!`);
-      // console.log(this.interests);
     }
   }
 

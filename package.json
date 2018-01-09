@@ -29,9 +29,12 @@
     "angular2-toaster": "^4.0.1",
     "core-js": "^2.4.1",
     "express": "^4.16.2",
+    "jarallax": "^1.9.3",
     "jquery": "^3.2.1",
+    "mdbootstrap": "^4.4.4",
     "ng2-date-picker": "^2.6.2",
     "rxjs": "^5.5.2",
+    "save": "^2.3.2",
     "typescript": "~2.4.2",
     "zone.js": "^0.8.14"
   },

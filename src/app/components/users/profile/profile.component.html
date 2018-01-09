@@ -33,7 +33,7 @@ Licensed under MIT
 
         <!-- SIDEBAR MENU -->
 
-        <!-- USER IS OWNER OF PROFILE AND NOT ADMIN ADMIN -->
+        <!-- USER IS OWNER OF PROFILE AND NOT ADMIN -->
         <div *ngIf="userIsOwnerOfProfile && !userIsAdmin" class="profile-usermenu">
           <ul class="nav">
             <!-- <li class="active"> -->
@@ -56,7 +56,8 @@ Licensed under MIT
           </ul>
         </div>
 
-        <div *ngIf="userIsAdmin" class="profile-usermenu">
+        <!-- USER IS OWNER OF PROFILE AND IS ADMIN -->
+        <div *ngIf="userIsOwnerOfProfile && userIsAdmin" class="profile-usermenu">
           <ul class="nav">
             <!-- <li class="active"> -->
             <li>
@@ -73,6 +74,30 @@ Licensed under MIT
               <a routerLink="/admin" routerLinkActive="active">
                 <i class="glyphicon glyphicon-sunglasses"></i>
                 Admin Panel </a>
+            </li>
+
+            <li>
+              <a routerLink="/logout">
+                <i class="glyphicon glyphicon-flag"></i>
+                Logout </a>
+            </li>
+          </ul>
+        </div>
+
+
+        <!-- USER IS NOT OWNER OF PROFILE BUT IS ADMIN -->
+        <div *ngIf="!userIsOwnerOfProfile && userIsAdmin" class="profile-usermenu">
+          <ul class="nav">
+            <!-- <li class="active"> -->
+            <li>
+              <a routerLink="/user/profile/{{user.username}}" routerLinkActive="active">
+                <i class="glyphicon glyphicon-home"></i>
+                Overview </a>
+            </li>
+            <li>
+              <a routerLink="/user/edit/{{user.username}}" routerLinkActive="active">
+                <i class="glyphicon glyphicon-user"></i>
+                Account Settings </a>
             </li>
 
             <li>

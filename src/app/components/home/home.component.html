@@ -1,0 +1,40 @@
+<div id="video-viewport">
+    <video width="1920" height="1280" autoplay muted loop>
+        <source src="./../../assets/images/home-video.mp4" type="video/mp4" />
+    </video>
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<div id="greeting-card" align="center">
+
+    <div *ngIf="loggedUser">
+        <h1>Welcome back, {{loggedUser.name}}</h1>
+    </div>
+    <div *ngIf="!loggedUser">
+        <h1>Welcome back</h1>
+    </div>
+    <div align="center">
+        <a routerLink="/explore">
+            <button class="btn btn-success home-btn">Start Exploring</button>
+        </a>
+        <a routerLink="/new">
+            <button class="btn btn-danger home-btn">Design a Point</button>
+        </a>
+    </div>
+
+</div>

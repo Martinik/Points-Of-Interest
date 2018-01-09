@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { UsersService } from '../../../services/users.service';
 import { Router } from '@angular/router';
+import { NotificationsService } from 'angular2-notifications';
 
 @Component({
   selector: 'admin-user-card',
@@ -10,9 +11,9 @@ import { Router } from '@angular/router';
 export class AdminUserCardComponent implements OnInit {
 
   @Input() user: Object;
-  @Output() userDeleted: EventEmitter<Object> = new EventEmitter<Object>(); 
+  @Output() userDeleted: EventEmitter<Object> = new EventEmitter<Object>();
 
-  constructor(private service: UsersService, private router: Router) { }
+  constructor(private service: UsersService, private router: Router, private notificationService: NotificationsService) { }
 
   ngOnInit() {
   }
@@ -27,23 +28,15 @@ export class AdminUserCardComponent implements OnInit {
   }
 
   onDeleteSuccess(deleteUserData) {
-    console.log(`User deleted`);
-    console.log(`Delete data:`);
-    console.log(deleteUserData);
-
-
-    console.log(`about to delete interest of ` + this.user['username']);
-
+    
     this.service.deleteUserInterests(this.user['_id'])
       .subscribe(deleteInterestData => this.onDeleteInterestsSuccess(deleteInterestData))
   }
 
   onDeleteInterestsSuccess(deleteInterestData) {
-    console.log(`User interests deleted`);
-    console.log(`Delete data:`);
-    console.log(deleteInterestData);
 
     this.userDeleted.emit(this.user);
+    this.notificationService.success('User Deleted');
   }
 
 

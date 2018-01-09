@@ -26,6 +26,7 @@ export class ProfileComponent implements OnInit {
   defaultDisplayArray: string = 'created';
   displayArray: Object[];
   userIsAdmin: boolean = false;
+  profileUserIsAdmin: boolean = false;
 
   constructor(private route: ActivatedRoute, private service: UsersService, private auth: AuthenticationService, private pointsService: PointsService) {
 
@@ -98,7 +99,7 @@ export class ProfileComponent implements OnInit {
   }
 
 
-  //black magic fuckery goes here...
+  
   onGetInterestsSuccess(recievedInterests) {
     
     this.interests = recievedInterests;
@@ -157,12 +158,12 @@ export class ProfileComponent implements OnInit {
 
     this.user = foundUsers[0];
 
-    console.log(`user changed`);
-    console.log(`new user id:`);
-    console.log(this.user['_id']);
-
     if (this.auth.userId === this.user['_id']) {
       this.userIsOwnerOfProfile = true;
+    }
+
+    if(this.user['isAdmin']){
+      this.profileUserIsAdmin = true;
     }
 
     this.initArrays();

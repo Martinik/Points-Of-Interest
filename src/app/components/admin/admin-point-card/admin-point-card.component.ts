@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { PointsService } from '../../../services/points.service';
+import { NotificationsService } from 'angular2-notifications';
 
 @Component({
   selector: 'admin-point-card',
@@ -11,7 +12,7 @@ export class AdminPointCardComponent implements OnInit {
   @Input() point: Object;
   @Output() pointDeleted: EventEmitter<Object> = new EventEmitter<Object>();
 
-  constructor(private service: PointsService) { }
+  constructor(private service: PointsService, private notificationService: NotificationsService) { }
 
   ngOnInit() {
   }
@@ -33,6 +34,7 @@ export class AdminPointCardComponent implements OnInit {
   
     this.pointDeleted.emit(this.point);
 
+    this.notificationService.success('Point Deleted');
   }
 
 }

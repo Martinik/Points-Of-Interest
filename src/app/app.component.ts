@@ -9,7 +9,7 @@ declare var $: any;
 })
 export class AppComponent {
   title = 'Points of Interest';
-  options: Object = {};
+  options: Object = {timeOut: 2000};
 
   constructor(
     private authService: AuthenticationService

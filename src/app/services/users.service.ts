@@ -93,24 +93,9 @@ export class UsersService {
 
 
   handleError(error) {
-    //TODO: use toastr for notifications
-    console.log(`ERROR`);
-    console.log(error);
+    // console.log('ERROR');
+    // console.log(error);
   }
 
-
-  // private createHeaders(type: string): HttpHeaders {
-  //   if (type === 'Basic') {
-  //     return new HttpHeaders({
-  //       'Authorization': `Basic ${btoa(`${appKey}:${appSecret}`)}`,
-  //       'Content-Type': 'application/json'
-  //     })
-  //   } else {
-  //     return new HttpHeaders({
-  //       'Authorization': `Kinvey ${localStorage.getItem('authtoken')}`,
-  //       'Content-Type': 'application/json'
-  //     })
-  //   }
-  // }
 
 }

@@ -1,7 +1,9 @@
 <div class="container">
 
     <div align="center">
-<img src="http://bnmc.gov.bd/images/adminpanel.png" alt="Admin Panel">
+        <a routerLink="/admin">
+            <img src="http://bnmc.gov.bd/images/adminpanel.png" alt="Admin Panel">
+        </a>
     </div>
     <div class="link-buttons" align="center">
         <a routerLink="/admin/users" routerLinkActive="active-btn" class="btn btn-default" data-filter="all">Users</a>
@@ -18,7 +20,7 @@
         </div>
 
 
-        
+
 
         <div *ngIf="shouldDisplayPoints">
 

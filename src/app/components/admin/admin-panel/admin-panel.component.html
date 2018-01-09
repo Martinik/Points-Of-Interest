@@ -1,0 +1,29 @@
+<div class="container">
+
+    <div align="center">
+<img src="http://bnmc.gov.bd/images/adminpanel.png" alt="Admin Panel">
+    </div>
+    <div class="link-buttons" align="center">
+        <a routerLink="/admin/users" routerLinkActive="active-btn" class="btn btn-default" data-filter="all">Users</a>
+        <a routerLink="/admin/points" routerLinkActive="active-btn" class="btn btn-default" data-filter="all">Points</a>
+    </div>
+    <br/>
+
+
+    <div class="row">
+
+        <div *ngIf="shouldDisplayUsers">
+
+            <admin-card-holder [type]="'users'"></admin-card-holder>
+        </div>
+
+
+        
+
+        <div *ngIf="shouldDisplayPoints">
+
+            <admin-card-holder [type]="'points'"></admin-card-holder>
+        </div>
+
+    </div>
+</div>

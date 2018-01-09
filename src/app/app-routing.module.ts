@@ -18,6 +18,8 @@ import { AuthGuard } from './guards/auth.guard.service';
 import { OwnerGuard } from './guards/owner.guard';
 import { ProfileGuard } from './guards/profile.guard';
 import { PageNotFoundComponent } from './components/common/error/page-not-found/page-not-found.component';
+import { AdminPanelComponent } from './components/admin/admin-panel/admin-panel.component';
+import { AdminGuard } from './guards/admin.guard';
 
 const routes : Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -33,6 +35,8 @@ const routes : Routes = [
   { path: 'edit/:id', canActivate: [ AuthGuard, OwnerGuard ], component: EditPageComponent },
   { path: 'search/:query', canActivate: [ AuthGuard ], component: SearchResultsPageComponent },
   { path: 'search', canActivate: [ AuthGuard ], component: SearchResultsPageComponent },
+  { path: 'admin/:query', canActivate: [ AuthGuard, AdminGuard ], component: AdminPanelComponent },
+  { path: 'admin', canActivate: [ AuthGuard, AdminGuard ], component: AdminPanelComponent },
   {path: '404', component: PageNotFoundComponent},
   {path: '**', redirectTo: '/404'}
 ]

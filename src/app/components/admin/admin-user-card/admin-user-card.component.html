@@ -1,0 +1,31 @@
+<div *ngIf="user" id="card-wrapper" class="row">
+  <div class="col-xs-2 col-md-1">
+    <a routerLink="/user/profile/{{user.username}}">
+      <img src="{{user.avatarUrl}}" class="img-circle img-responsive" alt="avatar" onerror="this.onerror=null;this.src='./../../../assets/images/default-avatar.png';"
+      />
+    </a>
+  </div>
+  <div class="col-xs-10 col-md-11">
+    <div>
+      <a routerLink="/user/profile/{{user.username}}">Username: {{user.username}}</a>
+      <div class="mic-info">
+        Name: {{user.name}}
+      </div>
+    </div>
+    <div class="comment-text">
+      Email: {{user.email}}
+    </div>
+    <br>
+    <div class="action">
+      <a routerLink="/user/edit/{{user.username}}">
+        <button type="button" class="btn btn-primary btn-xs" title="Edit">
+          <span class="glyphicon glyphicon-pencil"></span>
+        </button>
+      </a>
+
+      <button (click)="deleteUser()" type="button" class="btn btn-danger btn-xs" title="Delete">
+        <span class="glyphicon glyphicon-trash"></span>
+      </button>
+    </div>
+  </div>
+</div>

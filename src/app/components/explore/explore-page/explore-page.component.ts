@@ -11,7 +11,7 @@ import { PointsService } from '../../../services/points.service'
 export class ExplorePageComponent implements OnInit {
 
   searchedPointType: string;
-  points: any;
+  points: any; 
 
   constructor(private route: ActivatedRoute, private service: PointsService) { }
 

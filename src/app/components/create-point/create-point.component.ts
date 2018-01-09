@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { PointsService } from '../../services/points.service';
 import { Router } from '@angular/router';
+import { NotificationsService } from 'angular2-notifications';
 
 
 
@@ -35,7 +36,7 @@ export class CreatePointComponent implements OnInit {
     format: 'HH:mm'
   }
 
-  constructor(private ps: PointsService, private fb: FormBuilder, private router: Router) {
+  constructor(private ps: PointsService, private fb: FormBuilder, private router: Router,  private notificationService: NotificationsService) {
     this.createForm = fb.group({
       'title': [null, Validators.required],
       'description': [null, Validators.required],
@@ -112,29 +113,24 @@ export class CreatePointComponent implements OnInit {
       error => { this.creationError(error) }
     )
 
-    // console.log(this.ps);
-
   }
 
 
   creationSuccess(data) {
-    //TODO: Toastr success msg
-    console.log(`CREATED SUCCESSFULLY`);
-    console.log(data);
-
     this.router.navigate(['/explore']);
+    this.notificationService.success('Point Created!');
   }
 
   creationError(error) {
-    //TODO: Toastr error msg
-    console.log(`ERROR DURING CREATION`);
-    console.log(error);
+    
+   
+    this.notificationService.error('Creation Failed!');
   }
 
   clearTime() {
     let timeElement = document.querySelector("#time input")
     timeElement['value'] = ''
-    //  console.log(timeElement);
+  
   }
 
   selectRecreational() {

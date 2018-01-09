@@ -21,7 +21,7 @@
           </div>
         </div>
 
-        
+
 
       </div>
 
@@ -80,7 +80,7 @@
 
         </div>
 
-       
+
 
 
         <!-- interest button -->
@@ -113,7 +113,7 @@
         </div>
 
 
-       
+
 
         <div *ngIf="userIsCreator || userIsAdmin">
           <br>
@@ -131,22 +131,42 @@
 
 
         <div class="creator-wrapper">
-            <div *ngIf="creator">
-              
-                <span><span class="glyphicon glyphicon-user"></span> By:</span> &nbsp; &nbsp; &nbsp;
-                <a routerLink="/user/profile/{{creator.username}}">
-                  <img src="{{creator.avatarUrl}}" class="img-circle avatar" alt="user profile image" onerror="this.onerror=null;this.src='./../../../assets/images/default-avatar.png';">
-                  <div class="username-wrapper" *ngIf="userIsCreator">You</div>
-                  <div class="username-wrapper" *ngIf="!userIsCreator">{{creator.username}}</div>    
-                </a>
-                
+          <div *ngIf="creator">
+            
+            
+            
+            
+            
+            <div *ngIf="!creatorIsDeleted">
+              <span>
+                <span class="glyphicon glyphicon-user"></span> By:</span> &nbsp; &nbsp; &nbsp;
+              <a routerLink="/user/profile/{{creator.username}}">
+                <img src="{{creator.avatarUrl}}" class="img-circle avatar" alt="user profile image" onerror="this.onerror=null;this.src='./../../../assets/images/default-avatar.png';">
+                <div class="username-wrapper" *ngIf="userIsCreator">You</div>
+                <div class="username-wrapper" *ngIf="!userIsCreator">{{creator.username}}</div>
+              </a>
+
             </div>
-            <div *ngIf="!creator">
-              <i>Created By:</i> Unknown
+
+
+            <div *ngIf="creatorIsDeleted">
+              <span>
+                <span class="glyphicon glyphicon-user"></span> By:</span> &nbsp; &nbsp; &nbsp;     
+                <img src="https://images.cdn2.stockunlimited.net/clipart/delete-user-icon_1654208.jpg" class="img-circle avatar" alt="user profile image" onerror="this.onerror=null;this.src='./../../../assets/images/default-avatar.png';">
+                <div class="username-wrapper" >{{creator.username}}</div>
             </div>
-  
-  
+
+
+
+
+
           </div>
+          <div *ngIf="!creator">
+            <i>Created By:</i> Unknown
+          </div>
+
+
+        </div>
 
 
 

@@ -131,10 +131,28 @@
 
 
               </a>
-              <div class="dropdown-menu-div">
+              <!-- user is not admin -->
+              <div *ngIf="!isAdmin" class="dropdown-menu-div">
                 <ul class="dropdown-menu">
                   <li>
                     <a routerLink="/user/profile/{{loggedUser.username}}">Profile</a>
+                  </li>
+                  <li role="separator" class="divider"></li>
+                  <li>
+                    <a routerLink="/logout">Logout</a>
+                  </li>
+                </ul>
+              </div>
+
+              <!-- user is admin -->
+              <div *ngIf="isAdmin" class="dropdown-menu-div">
+                <ul class="dropdown-menu">
+                  <li>
+                    <a routerLink="/user/profile/{{loggedUser.username}}">Profile</a>
+                  </li>
+                  <li role="separator" class="divider"></li>
+                  <li>
+                    <a routerLink="/admin">Admin Panel</a>
                   </li>
                   <li role="separator" class="divider"></li>
                   <li>

@@ -7,9 +7,22 @@
           <img src="https://loading.io/spinners/microsoft/lg.rotating-balls-spinner.gif" class="img-circle avatar" alt="user profile image">
         </div>
         <div *ngIf="commentAuthor">
-          <a routerLink="/user/profile/{{commentAuthor.username}}">
-            <img src="{{commentAuthor.avatarUrl}}" class="img-circle avatar" alt="user profile image" onerror="this.onerror=null;this.src='./../../../assets/images/default-avatar.png';">
-          </a>
+
+ 
+          <div *ngIf="!authorIsDeleted">
+            <a routerLink="/user/profile/{{commentAuthor.username}}">
+              <img src="{{commentAuthor.avatarUrl}}" class="img-circle avatar" alt="user profile image" onerror="this.onerror=null;this.src='./../../../assets/images/default-avatar.png';">
+            </a>
+          </div>
+
+          <div *ngIf="authorIsDeleted">
+
+            <img src="https://images.cdn2.stockunlimited.net/clipart/delete-user-icon_1654208.jpg" class="img-circle avatar" alt="user profile image"
+              onerror="this.onerror=null;this.src='./../../../assets/images/default-avatar.png';">
+
+          </div>
+
+
         </div>
       </div>
       <div class="pull-left meta">
@@ -18,9 +31,14 @@
 
 
           <div *ngIf="commentAuthor">
-            <a routerLink="/user/profile/{{commentAuthor.username}}">
+            <div *ngIf="!authorIsDeleted">
+              <a routerLink="/user/profile/{{commentAuthor.username}}">
+                <b>{{commentAuthor.username}}</b>
+              </a>
+            </div>
+            <div *ngIf="authorIsDeleted">
               <b>{{commentAuthor.username}}</b>
-            </a>
+            </div>
           </div>
 
           <div *ngIf="!commentAuthor">

@@ -2,6 +2,7 @@ import { Component, Output, EventEmitter } from '@angular/core';
 import { LoginModel } from '../models/login.model';
 import { AuthenticationService } from '../auth.service';
 import { Router } from '@angular/router';
+import { NotificationsService } from 'angular2-notifications';
 
 @Component({
   selector: 'app-login-form',
@@ -17,7 +18,8 @@ export class LoginFormComponent {
 
   constructor(
     private authService : AuthenticationService,
-    private router : Router
+    private router : Router,
+    private notificationService: NotificationsService 
   ) {
     this.model = new LoginModel("", "");
     this.username = "";
@@ -50,7 +52,7 @@ export class LoginFormComponent {
     localStorage.setItem('userId', data['_id']);
     this.loginFail = false;
     this.router.navigate(['/home']);
-
+    this.notificationService.success('Login Success!')
     this.authService.changeUser(data);
 
     // console.log(this.authService.authtoken);

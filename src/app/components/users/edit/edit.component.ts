@@ -3,6 +3,7 @@ import { UsersService } from '../../../services/users.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../../../authentication/auth.service';
+import { NotificationsService } from 'angular2-notifications';
 
 @Component({
   selector: 'edit-user',
@@ -21,7 +22,7 @@ export class EditComponent implements OnInit {
 
 
   constructor(private service: UsersService, private auth: AuthenticationService, private fb: FormBuilder,
-    private router: Router) {
+    private router: Router, private notificationService: NotificationsService) {
     this.editForm = this.fb.group({
       'name': ['', Validators.required],
       'email': ['', Validators.compose([
@@ -30,6 +31,8 @@ export class EditComponent implements OnInit {
       'avatarUrl': ['', null]
     })
   }
+
+
 
   ngOnInit() {
     this.editForm.patchValue({ name: this.user['name'] })
@@ -79,9 +82,37 @@ export class EditComponent implements OnInit {
 
     this.router.navigate([`/user/profile/${this.user['username']}`]);
 
-    console.log(`user edited`);
-    console.log(data);
 
+    this.notificationService.success('User Edited')
+
+  }
+
+  deleteUser(e) {
+
+    if (confirm(`Are you sure you want to delete ${this.user['username']}? \n The user will be permanently removed!`) == true) {
+      this.service.deleteUser(this.user['_id'])
+        .subscribe(deleteUserData => this.onDeleteSuccess(deleteUserData));
+    }
+
+  }
+
+  onDeleteSuccess(deleteUserData) {
+   
+
+    console.log(`about to delete interest of ` + this.user['username']);
+
+    this.service.deleteUserInterests(this.user['_id'])
+      .subscribe(deleteInterestData => this.onDeleteInterestsSuccess(deleteInterestData))
+  }
+
+  onDeleteInterestsSuccess(deleteInterestData) {
+    console.log(`User interests deleted`);
+    console.log(`Delete data:`);
+    console.log(deleteInterestData);
+
+    this.router.navigate(['/home'])
+
+    this.notificationService.success('User Deleted');
   }
 
 }

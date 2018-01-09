@@ -22,6 +22,8 @@ export class DetailsCardComponent implements OnInit {
   userIsCreator: boolean = false;
   userIsAdmin: boolean = false; 
   creator: Object;
+  creatorIsDeleted: boolean; 
+  
 
   constructor(private auth: AuthenticationService, 
     private pointsService: PointsService, 
@@ -56,12 +58,23 @@ export class DetailsCardComponent implements OnInit {
 
   getCreator() {
     this.pointsService.getCreatorById(this.point['_acl']['creator'])
-      .subscribe(user => {
-        if (user['_id'] === this.auth.userId) {
-          this.userIsCreator = true;
-        }
-        this.creator = user;
-      })
+      .subscribe(user => this.onGetCreatorSuccess(user), error => this.onGetCreatorFail(error))
+  }
+
+  onGetCreatorSuccess(user){
+   
+    if (user['_id'] === this.auth.userId) {
+      this.userIsCreator = true;
+    }
+    this.creator = user;
+  
+  }
+  onGetCreatorFail(error){
+    this.creator = {
+      username: '[user deleted]'
+    }
+    this.userIsCreator = false;
+    this.creatorIsDeleted = true;
   }
 
   addUserToInterested() {

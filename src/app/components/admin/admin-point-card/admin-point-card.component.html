@@ -1,0 +1,31 @@
+<div *ngIf="point" id="card-wrapper" class="row">
+    <div class="col-xs-2 col-md-1">
+      <a routerLink="/details/{{point._id}}">
+        <img src="{{point.imgUrl}}" class="img-circle img-responsive card-img" alt="avatar" onerror="this.onerror=null;this.src='./../../../assets/images/default-avatar.png';"
+        />
+      </a>
+    </div>
+    <div class="col-xs-10 col-md-11">
+      <div>
+        <a routerLink="/details/{{point._id}}">Title: {{point.title}}</a>
+        <div class="mic-info">
+          Type: {{point.type}}
+        </div>
+      </div>
+      <div class="comment-text">
+        Location: {{point.location}}
+      </div>
+      <br>
+      <div class="action">
+        <a routerLink="/edit/{{point._id}}">
+          <button type="button" class="btn btn-primary btn-xs" title="Edit">
+            <span class="glyphicon glyphicon-pencil"></span>
+          </button>
+        </a>
+  
+        <button (click)="deletePoint()" type="button" class="btn btn-danger btn-xs" title="Delete">
+          <span class="glyphicon glyphicon-trash"></span>
+        </button>
+      </div>
+    </div>
+  </div>

@@ -3,6 +3,7 @@ import { RegisterModel } from '../models/register.model';
 import { LoginModel } from '../models/login.model';
 import { AuthenticationService } from '../auth.service';
 import { Router } from '@angular/router';
+import { NotificationsService } from 'angular2-notifications';
 
 @Component({
   selector: 'app-register-form',
@@ -18,7 +19,8 @@ export class RegisterFormComponent {
 
   constructor(
     private authService: AuthenticationService,
-    private router : Router
+    private router : Router,
+    private notificationService: NotificationsService 
   ) {
     this.model = new RegisterModel("", "", "", "");
   }
@@ -65,5 +67,7 @@ export class RegisterFormComponent {
 
 
     this.router.navigate(['/login']);
+    this.notificationService.success('Registered Successfuly')
+    
   }
 }

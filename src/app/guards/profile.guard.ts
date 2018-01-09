@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { AuthenticationService } from '../authentication/auth.service';
 import { Location } from '@angular/common';
 import { UsersService } from '../services/users.service';
+import { NotificationsService } from 'angular2-notifications';
 
 @Injectable()
 export class ProfileGuard implements CanActivate {
@@ -13,7 +14,8 @@ export class ProfileGuard implements CanActivate {
     private authService: AuthenticationService,
     private usersService: UsersService,
     private router: Router,
-    private _location: Location
+    private _location: Location,
+    private notificationService: NotificationsService 
   ) { }
 
 
@@ -61,8 +63,9 @@ export class ProfileGuard implements CanActivate {
                     
         })
         .catch(e => {
-
+          this.notificationService.error('Access Denied!');
           this._location.back(); 
+          // this.notificationService.error('Access Denied!');
           return false;
         })
     )
@@ -80,8 +83,9 @@ export class ProfileGuard implements CanActivate {
     if (user['username'] === linkUsername) {
       return true;
     }
-
+    this.notificationService.error('Access Denied!');
     this._location.back();
+    // this.notificationService.error('Access Denied!');
     return false;
   }
 }

@@ -33,8 +33,8 @@ Licensed under MIT
 
         <!-- SIDEBAR MENU -->
 
-        <!-- USER IS OWNER OF PROFILE OR ADMIN -->
-        <div *ngIf="userIsOwnerOfProfile || userIsAdmin" class="profile-usermenu">
+        <!-- USER IS OWNER OF PROFILE AND NOT ADMIN ADMIN -->
+        <div *ngIf="userIsOwnerOfProfile && !userIsAdmin" class="profile-usermenu">
           <ul class="nav">
             <!-- <li class="active"> -->
             <li>
@@ -47,7 +47,34 @@ Licensed under MIT
                 <i class="glyphicon glyphicon-user"></i>
                 Account Settings </a>
             </li>
-         
+
+            <li>
+              <a routerLink="/logout">
+                <i class="glyphicon glyphicon-flag"></i>
+                Logout </a>
+            </li>
+          </ul>
+        </div>
+
+        <div *ngIf="userIsAdmin" class="profile-usermenu">
+          <ul class="nav">
+            <!-- <li class="active"> -->
+            <li>
+              <a routerLink="/user/profile/{{user.username}}" routerLinkActive="active">
+                <i class="glyphicon glyphicon-home"></i>
+                Overview </a>
+            </li>
+            <li>
+              <a routerLink="/user/edit/{{user.username}}" routerLinkActive="active">
+                <i class="glyphicon glyphicon-user"></i>
+                Account Settings </a>
+            </li>
+            <li>
+              <a routerLink="/admin" routerLinkActive="active">
+                <i class="glyphicon glyphicon-sunglasses"></i>
+                Admin Panel </a>
+            </li>
+
             <li>
               <a routerLink="/logout">
                 <i class="glyphicon glyphicon-flag"></i>
@@ -70,7 +97,7 @@ Licensed under MIT
 
         <!-- END MENU -->
       </div>
-      
+
 
       <div *ngIf="!user" class="profile-sidebar">
         <img class="loading-user-gif" src="./../../../assets/images/circle-load.gif" alt="loading...">
@@ -84,21 +111,16 @@ Licensed under MIT
 
     </div>
 
-   
+
 
     <div class="col-md-9">
       <div class="profile-content">
         <div *ngIf="shouldDisplayDetails">
 
           <div *ngIf="user">
-            <user-points-section 
-            [defaultDisplayArray]="defaultDisplayArray"
-            [interests]="interestPoints" 
-            [createdPoints]="createdPoints" 
-            [displayArray]="displayArray" 
-            [user]="user" 
-            >
-          </user-points-section>
+            <user-points-section [defaultDisplayArray]="defaultDisplayArray" [interests]="interestPoints" [createdPoints]="createdPoints"
+              [displayArray]="displayArray" [user]="user">
+            </user-points-section>
           </div>
         </div>
         <div *ngIf="shouldDisplayEditForm">

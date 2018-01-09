@@ -11,20 +11,27 @@ export class HeaderComponent implements OnInit {
 
   loggedUser: Object;
   isLoggedIn: boolean;
+  isAdmin: boolean;
 
   constructor(private authService: AuthenticationService, private router: Router) {
     this.isLoggedIn = authService.isLoggedIn();
-   }
+  }
 
   ngOnInit() {
     this.isLoggedIn = this.authService.isLoggedIn();
-    this.getLoggedUser();
-    this.authService.userChanged.subscribe(newUser => {this.loggedUser = newUser; this.isLoggedIn = this.authService.isLoggedIn();});
+    // this.getLoggedUser();
+    this.authService.userChanged.subscribe(newUser => {
+      this.loggedUser = newUser;
+      this.isLoggedIn = this.authService.isLoggedIn();
+      if (this.isLoggedIn) {
+        this.isAdmin = this.authService.currentUser['isAdmin'];
+      }
+    });
   }
 
-  
 
-  getLoggedUser(){
+
+  getLoggedUser() {
     // if(this.authService.isLoggedIn()){
     //   this.authService.getLoggedUser().subscribe(user => this.loggedUser = user);
     // }
@@ -32,23 +39,25 @@ export class HeaderComponent implements OnInit {
     // this.authService.getLoggedUser().subscribe(user => this.loggedUser = user);
 
     this.loggedUser = this.authService.currentUser;
+    if (this.isLoggedIn) {
+      this.isAdmin = this.authService.currentUser['isAdmin'];
+    }
 
-    
   }
 
-  toggleNavDropDown(){
+  toggleNavDropDown() {
     let navElement = document.getElementById("bs-example-navbar-collapse-1");
-    
-        // dateBlock.style.visibility = "visible";
 
-        if(navElement.style.display === 'block'){
-           navElement.style.display = 'none';
-        } else {
-          navElement.style.display = 'block';
-        }
-       
+    // dateBlock.style.visibility = "visible";
+
+    if (navElement.style.display === 'block') {
+      navElement.style.display = 'none';
+    } else {
+      navElement.style.display = 'block';
+    }
+
   }
 
-  
+
 
 }

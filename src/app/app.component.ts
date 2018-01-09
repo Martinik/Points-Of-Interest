@@ -9,18 +9,25 @@ declare var $: any;
 })
 export class AppComponent {
   title = 'Authentication Demo';
-  
+
   constructor(
-    private authService : AuthenticationService
+    private authService: AuthenticationService
   ) { }
 
   ngOnInit() {
-    if(this.authService.isLoggedIn && this.authService.userId){
+    if (this.authService.isLoggedIn && this.authService.userId) {
       this.authService.initUser();
     }
+
+
+    
+
   }
 
   
 
-  
+
+
+
+
 }

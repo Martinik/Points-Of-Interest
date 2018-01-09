@@ -43,6 +43,16 @@ export class InterestsService {
     }).catch((e: any) => Observable.throw(this.handleError(e)));
   }
 
+  deleteAllInterestsOfUser(userId: string): Observable<Object> {
+    
+    
+    let url = `${interestsBaseUrl}/?query={"userId":"${userId}"}`;
+    
+    return this.http.delete(url, {
+      headers: this.auth.createAuthHeaders('Kinvey')
+    }).catch((e: any) => Observable.throw(this.handleError(e)));
+  }
+
   getPointInterests(pointId){
     let url = `${interestsBaseUrl}/?query={"pointId":"${pointId}"}`;
     

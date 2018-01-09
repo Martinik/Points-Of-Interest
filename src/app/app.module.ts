@@ -6,7 +6,8 @@ import { AuthenticationModule } from './authentication/auth.module';
 import { AppRoutesModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {DpDatePickerModule} from 'ng2-date-picker';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SimpleNotificationsModule } from 'angular2-notifications';
 
 // Components
 import { AppComponent } from './app.component';
@@ -40,6 +41,11 @@ import { InterestsService } from './services/interests.service';
 import { UsersService } from './services/users.service';
 import { OwnerGuard } from './guards/owner.guard';
 import { ProfileGuard } from './guards/profile.guard';
+import { AdminPanelComponent } from './components/admin/admin-panel/admin-panel.component';
+import { AdminUserCardComponent } from './components/admin/admin-user-card/admin-user-card.component';
+import { AdminPointCardComponent } from './components/admin/admin-point-card/admin-point-card.component';
+import { AdminCardHolderComponent } from './components/admin/admin-card-holder/admin-card-holder.component';
+import { AdminGuard } from './guards/admin.guard';
 
 
 
@@ -67,7 +73,11 @@ import { ProfileGuard } from './guards/profile.guard';
     EditPracticalComponent,
     EditRecreationalComponent,
     SearchResultsPageComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    AdminPanelComponent,
+    AdminUserCardComponent,
+    AdminPointCardComponent,
+    AdminCardHolderComponent
   ],
   imports: [
     BrowserModule,
@@ -75,12 +85,15 @@ import { ProfileGuard } from './guards/profile.guard';
     AppRoutesModule,
     FormsModule,
     ReactiveFormsModule,
-    DpDatePickerModule 
+    DpDatePickerModule ,
+    BrowserAnimationsModule, 
+    SimpleNotificationsModule.forRoot()
   ],
   providers: [
     AuthGuard,
     OwnerGuard,
     ProfileGuard,
+    AdminGuard,
     PointsService,
     CommentsService,
     InterestsService,

@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { PointsService } from '../../../services/points.service';
 import { Router } from '@angular/router';
+import { NotificationsService } from 'angular2-notifications';
 
 @Component({
   selector: 'edit-practical',
@@ -22,7 +23,7 @@ export class EditPracticalComponent implements OnInit {
   imgUrl: string = '';
   type: string = "practical";
   
-  constructor(private ps: PointsService, private fb: FormBuilder, private router: Router) {
+  constructor(private ps: PointsService, private fb: FormBuilder, private router: Router,   private notificationService: NotificationsService) {
     
         this.editForm = fb.group({
           'title': [null, Validators.required],
@@ -86,17 +87,15 @@ export class EditPracticalComponent implements OnInit {
 
 
       editSuccess(data) {
-        //TODO: Toastr success msg
-        console.log(`EDITED SUCCESSFULLY`);
-        console.log(data);
+       
     
         this.router.navigate([`/details/${this.point['_id']}`]);
+        this.notificationService.success('Point Edited');
       }
     
       editError(error) {
-        //TODO: Toastr error msg
-        console.log(`ERROR DURING EDIT`);
-        console.log(error);
+        
+        this.notificationService.error('Failed to Edit');
       }
 
 
@@ -106,7 +105,7 @@ export class EditPracticalComponent implements OnInit {
         } 
       }
     
-      deletePoint(){
+      deletePoint(){ 
         this.ps.deletePointInterests(this.point['_id'])
         .subscribe(deleteInterestsData => {
           this.ps.deletePointById(this.point['_id'])
@@ -116,6 +115,7 @@ export class EditPracticalComponent implements OnInit {
     
       onDeletePointSuccess(deletePointData){
         this.router.navigate([`/explore`]);
+        this.notificationService.success('Point Deleted!')
       }
 
 }

@@ -1,47 +1,67 @@
 <div class="row main">
-    <div class="main-login main-center">
+  <div class="main-login main-center">
     <h4>Edit your personal information</h4>
     <br>
-      <form class="" [formGroup]="editForm" (ngSubmit)="onSubmit(editForm.value)">
-        
-        <div class="form-group">
-          <label for="name" class="cols-sm-2 control-label">Your Name</label>
-          <div class="cols-sm-10">
-            <div class="input-group">
-              <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-              <input formControlName="name"  type="text" class="form-control" name="name" id="name"  placeholder="Enter your Name"/>
-            </div>
+    <form class="" [formGroup]="editForm" (ngSubmit)="onSubmit(editForm.value)">
+
+      <div class="form-group">
+        <label for="name" class="cols-sm-2 control-label">Your Name</label>
+        <div class="cols-sm-10">
+          <div class="input-group">
+            <span class="input-group-addon">
+              <i class="fa fa-user fa" aria-hidden="true"></i>
+            </span>
+            <input formControlName="name" type="text" class="form-control" name="name" id="name" placeholder="Enter your Name" />
           </div>
         </div>
+      </div>
 
-        <div class="form-group">
-          <label for="email" class="cols-sm-2 control-label">Your Email</label>
-          <div class="cols-sm-10">
-            <div class="input-group">
-              <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-              <input formControlName="email"   type="text" class="form-control" name="email" id="email"  placeholder="Enter your Email"/>
-            </div>
+      <div class="form-group">
+        <label for="email" class="cols-sm-2 control-label">Your Email</label>
+        <div class="cols-sm-10">
+          <div class="input-group">
+            <span class="input-group-addon">
+              <i class="fa fa-envelope fa" aria-hidden="true"></i>
+            </span>
+            <input formControlName="email" type="text" class="form-control" name="email" id="email" placeholder="Enter your Email" />
           </div>
         </div>
+      </div>
 
-        <div class="form-group">
-          <label for="avatarUrl" class="cols-sm-2 control-label">Avatar URL</label>
-          <div class="cols-sm-10">
-            <div class="input-group">
-              <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-              <input formControlName="avatarUrl"   type="text" class="form-control" name="avatarUrl" id="avatarUrl"  placeholder="Avatar URL"/>
-            </div>
+      <div class="form-group">
+        <label for="avatarUrl" class="cols-sm-2 control-label">Avatar URL</label>
+        <div class="cols-sm-10">
+          <div class="input-group">
+            <span class="input-group-addon">
+              <i class="fa fa-envelope fa" aria-hidden="true"></i>
+            </span>
+            <input formControlName="avatarUrl" type="text" class="form-control" name="avatarUrl" id="avatarUrl" placeholder="Avatar URL"
+            />
           </div>
         </div>
+      </div>
 
-<!-- 
+      <!-- 
         <div class="form-group ">
           <a href="http://deepak646.blogspot.in" target="_blank" type="button" id="button" class="btn btn-primary btn-lg btn-block login-button">Save Changes</a>
         </div> -->
 
 
-        <input type="submit" class="btn btn-primary btn-lg btn-block login-button" value="Save Changes" [disabled]="!editForm.valid">
-        
-      </form>
+      <input type="submit" class="btn btn-primary btn-lg btn-block login-button" value="Save Changes" [disabled]="!editForm.valid">
+
+    </form>
+
+  </div>
+
+  <div *ngIf="userIsAdmin">
+    <br>
+    <br>
+    <br>
+    <br>
+    <div>
+      <button class="btn btn-danger" (click)="deleteUser()">
+        Delete User
+      </button>
     </div>
   </div>
+</div>

@@ -5,6 +5,7 @@ import { AuthenticationService } from '../authentication/auth.service';
 import { PointsService } from '../services/points.service';
 import { Location } from '@angular/common';
 import { UsersService } from '../services/users.service';
+import { NotificationsService } from 'angular2-notifications';
 
 @Injectable()
 export class OwnerGuard implements CanActivate {
@@ -15,7 +16,8 @@ export class OwnerGuard implements CanActivate {
     private router: Router,
     private usersService: UsersService,
     private ps: PointsService,
-    private _location: Location
+    private _location: Location,
+    private notificationService: NotificationsService 
   ) { }
 
   canActivate(
@@ -46,9 +48,10 @@ export class OwnerGuard implements CanActivate {
       .catch(e => {
         console.log(`error in guard`);
         console.log(e);
-        
+        this.notificationService.error('Access Denied!');
         this._location.back();
-        // this.router.navigate(['/home']);
+        // this.router.navigate(['/home']); 
+        // this.notificationService.error('Access Denied!');
         return false;
       })
     )
@@ -64,28 +67,26 @@ export class OwnerGuard implements CanActivate {
           if (data['_acl']['creator'] === user['_id']) {
             return true;
           }
-          console.log(`GUARD -> current user id `);
-          console.log(user['userId']);
-          console.log('creator:');
-          console.log(data['_acl']['creator']);
+        
           if (user['isAdmin']) { 
             return true;
           }
 
+          this.notificationService.error('Access Denied!');
           this._location.back();
-          // this.router.navigate(['/home']);
-          console.log(`unauthorised!`);
-
+          
+         
           return false;
 
         })
         .catch(e => {
           console.log(`error in guard`);
           console.log(e);
-          
+          this.notificationService.error('Access Denied!');
           this._location.back();
           // this.router.navigate(['/home']);
-          return false;
+           
+           return false;
         })
     )
   }

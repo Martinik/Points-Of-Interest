@@ -8,7 +8,8 @@ declare var $: any;
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Authentication Demo';
+  title = 'Points of Interest';
+  options: Object = {};
 
   constructor(
     private authService: AuthenticationService

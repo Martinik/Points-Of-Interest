@@ -19,14 +19,12 @@ export class EditPageComponent implements OnInit {
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('id');
 
-    console.log(`inside edit page`);
-    
         this.service.getPointById(this.id)
           .subscribe(recievedPoint => this.onGetPointSuccess(recievedPoint))
   }
 
   private onGetPointSuccess(recievedPoint) {
-    console.log(`point recieved`);
+   
     
     this.point = recievedPoint;
    

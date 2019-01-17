@@ -63,8 +63,6 @@ export class CreatePointComponent implements OnInit {
     this.imgUrl = post.imgUrl;
 
 
-    console.log('post.time');
-    console.log(post.time);
 
     let dateAsNum = Date.parse(post['date']);
     let dateAsDate = new Date(dateAsNum);
@@ -104,8 +102,6 @@ export class CreatePointComponent implements OnInit {
       creationModel['imgUrl'] = `./../../../assets/images/noimage.png`;
     }
 
-    console.log("creationModel");
-    console.log(creationModel);
 
 
     this.ps.create(creationModel).subscribe(

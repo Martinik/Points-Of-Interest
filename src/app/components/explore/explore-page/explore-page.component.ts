@@ -29,11 +29,11 @@ export class ExplorePageComponent implements OnInit {
     let endPointParam = this.searchedPointType;
 
     if (!this.searchedPointType || this.searchedPointType === 'all' || this.searchedPointType === '') {
-      console.log(`getting ALL points`);
+     
       this.service.getAllPoints()
         .subscribe(points => this.onGetPointsSuccess(points));
     } else {
-      console.log(`getting points by TYPE`);
+      
       this.service.getPointsByType(endPointParam)
         .subscribe(points => this.onGetPointsSuccess(points));
     }
@@ -46,8 +46,6 @@ export class ExplorePageComponent implements OnInit {
 
     this.points = recievedPoints;
 
-    console.log('*******this.points:');
-    console.log(this.points);
   }
 
   private subscribeToRoute() {

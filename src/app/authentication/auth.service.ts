@@ -39,7 +39,6 @@ export class AuthenticationService {
     this.currentUser = newUser;
     
     this.userChanged.emit(newUser);
-    console.log(`new user emitted`);
   }
 
   register(registerModel : Object) : Observable<Object> {

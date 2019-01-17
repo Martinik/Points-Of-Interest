@@ -34,16 +34,9 @@ export class SubmitCommentFormComponent implements OnInit {
       .subscribe(response => this.onCreateSuccess(response))
 
 
-    
-
-    console.log(payload);
-
-    
-
   }
 
   onCreateSuccess(response){
-    console.log(`Comment created!`);
     this.commentForm.reset();
     this.submittedComment.emit();
   }

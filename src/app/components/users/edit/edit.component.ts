@@ -38,7 +38,7 @@ export class EditComponent implements OnInit {
     this.editForm.patchValue({ name: this.user['name'] })
     this.editForm.patchValue({ email: this.user['email'] })
     this.editForm.patchValue({ avatarUrl: this.user['avatarUrl'] })
-    console.log(this.user);
+  
 
   }
 
@@ -97,18 +97,13 @@ export class EditComponent implements OnInit {
   }
 
   onDeleteSuccess(deleteUserData) {
-   
-
-    console.log(`about to delete interest of ` + this.user['username']);
 
     this.service.deleteUserInterests(this.user['_id'])
       .subscribe(deleteInterestData => this.onDeleteInterestsSuccess(deleteInterestData))
   }
 
   onDeleteInterestsSuccess(deleteInterestData) {
-    console.log(`User interests deleted`);
-    console.log(`Delete data:`);
-    console.log(deleteInterestData);
+ 
 
     this.router.navigate(['/home'])
 

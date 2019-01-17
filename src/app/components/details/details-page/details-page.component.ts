@@ -23,7 +23,6 @@ export class DetailsPageComponent implements OnInit {
 
   private onGetPointSuccess(recievedPoint) {
     this.point = recievedPoint;
-    // console.log(this.point);
   }
  
 } 

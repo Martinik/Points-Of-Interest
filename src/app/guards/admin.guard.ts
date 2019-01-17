@@ -57,8 +57,6 @@ export class AdminGuard implements CanActivate {
           return false;
         })
         .catch(e => {
-          console.log(`error in guard`);
-          console.log(e);
           
           this._location.back();
           this.notificationService.error('Access Denied!')

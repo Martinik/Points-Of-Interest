@@ -133,13 +133,6 @@ export class EditRecreationalComponent implements OnInit {
       editModel['imgUrl'] = `./../../../assets/images/noimage.png`;
     }
 
-
-
-
-    console.log(`final model`);
-    console.log(editModel);
-
-
     this.ps.editPoint(this.point['_id'], editModel).subscribe(
       data => { this.editSuccess(data) },
       error => { this.editError(error) }
@@ -160,7 +153,7 @@ export class EditRecreationalComponent implements OnInit {
   clearTime() {
     let timeElement = document.querySelector("#time input")
     timeElement['value'] = ''
-    //  console.log(timeElement);
+  
   }
 
   tryDelete(){

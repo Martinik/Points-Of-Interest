@@ -55,7 +55,6 @@ export class LoginFormComponent {
     this.notificationService.success('Login Success!')
     this.authService.changeUser(data);
 
-    // console.log(this.authService.authtoken);
-    // console.log(localStorage.getItem('authtoken'));
+    
   }
 }

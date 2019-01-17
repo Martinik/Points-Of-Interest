@@ -6,7 +6,8 @@
 
 .point-card {
     height: 450px;
-    width: 30.3333%;
+   width: 90%;
+   /* width: 30.3333%; */
     margin: 1.5%;
     background-color: rgba(172, 172, 172, 0.829);
     border-radius: 10px;

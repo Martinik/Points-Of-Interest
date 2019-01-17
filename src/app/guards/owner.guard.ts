@@ -46,8 +46,7 @@ export class OwnerGuard implements CanActivate {
         return this.checkIfUserCanEdit(recievedUser, pointId)
       })
       .catch(e => {
-        console.log(`error in guard`);
-        console.log(e);
+
         this.notificationService.error('Access Denied!');
         this._location.back();
         // this.router.navigate(['/home']); 
@@ -80,8 +79,7 @@ export class OwnerGuard implements CanActivate {
 
         })
         .catch(e => {
-          console.log(`error in guard`);
-          console.log(e);
+
           this.notificationService.error('Access Denied!');
           this._location.back();
           // this.router.navigate(['/home']);

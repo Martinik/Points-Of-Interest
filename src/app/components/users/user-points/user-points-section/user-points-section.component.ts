@@ -30,8 +30,7 @@ export class UserPointsSectionComponent implements OnInit {
   constructor(private route: ActivatedRoute, private usersService: UsersService, private pointsService: PointsService, private auth: AuthenticationService) { }
 
   ngOnInit() {
-    console.log('ngonitit user id ');
-    console.log(this.user['_id']);
+  
     if (this.user['_id'] === this.auth.userId) {
       this.userIsOwner = true;
     }
@@ -42,9 +41,7 @@ export class UserPointsSectionComponent implements OnInit {
   private subscribeToRoute() {
     this.route.params.subscribe(
       params => {
-        console.log('route change user id ');
-        console.log(this.user['_id']);
-
+        
         if (this.user['_id'] === this.auth.userId) {
           this.userIsOwner = true;
         }

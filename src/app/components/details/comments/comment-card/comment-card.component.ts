@@ -32,7 +32,7 @@ export class CommentCardComponent implements OnInit {
   onGetAuthorSuccess(author){
     this.commentAuthor = author;
     this.userIsAuthor = (this.commentAuthor._id === this.auth.userId);
-    console.log(this.commentAuthor._id + '   ???  ' + this.auth.userId);
+   
   }
 
   onGetAuthorFail(error){

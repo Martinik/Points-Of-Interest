@@ -58,7 +58,6 @@ export class RegisterFormComponent {
     this.registeredUser = data['username'];
 
 
-    console.log(data);
 
     let loginModel: LoginModel = {
       username: this.registeredUser,
